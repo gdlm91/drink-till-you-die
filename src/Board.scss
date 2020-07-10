@@ -1,0 +1,150 @@
+@function generateGrid($x, $y) {
+  $areas: ();
+  $alternate: false;
+  $count: 0;
+
+  @for $i from 1 through $y {
+    $str: "";
+
+    @for $j from 1 through $x {
+      @if ($alternate) {
+        $str: unquote($str) + box-#{$count + $x - $j + 1 + unquote(" ")};
+      } @else {
+        $str: unquote($str) + box-#{$count + $j + unquote(" ")};
+      }
+    }
+
+    $count: $count + $x;
+    $areas: append($areas, quote($str));
+    $alternate: not $alternate;
+  }
+
+  @return $areas;
+}
+
+@mixin boxes($x, $y) {
+  $total: $x * $y;
+  @for $i from 1 through $total {
+    .box-#{$i} {
+      grid-area: box-#{$i};
+    }
+  }
+}
+
+@mixin box-edges($x, $y) {
+  .box:nth-child(#{$x}n) {
+    border-bottom: none;
+  }
+
+  .box:nth-child(#{$x}n + 1) {
+    border-top: none;
+  }
+
+  .box:nth-child(#{$x * 2}n) {
+    border-bottom: none;
+  }
+
+  .box:nth-child(#{$x * 2}n + 1) {
+    border-top: none;
+  }
+
+  // Why first-child / last-child doesn't work?
+  .box:nth-child(1) {
+    border-top: 3px solid black;
+  }
+
+  .box:nth-child(#{$x * $y}) {
+    border-bottom: 3px solid black;
+  }
+}
+
+.Board {
+  display: grid;
+  border: 3px solid black;
+  grid-auto-rows: 1fr;
+  grid-template-areas: generateGrid(10, 10);
+  @include box-edges(10, 10);
+  max-width: 1200px;
+  margin: 15px auto;
+}
+
+// Hack for squared grids
+// https://medium.com/cloudaper/how-to-create-a-flexible-square-grid-with-css-grid-layout-ea48baf038f3
+.Board::before {
+  content: "";
+  width: 0;
+  padding-bottom: 100%;
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
+}
+.Board > *:first-child {
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
+}
+
+.box {
+  box-sizing: border-box;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+}
+
+@include boxes(10, 10);
+
+.g3x8 {
+  grid-template-areas: generateGrid(3, 8);
+
+  @include box-edges(3, 8);
+}
+
+.g4x6 {
+  grid-template-areas: generateGrid(4, 6);
+
+  @include box-edges(4, 6);
+}
+
+.g6x4 {
+  grid-template-areas: generateGrid(6, 4);
+
+  @include box-edges(6, 4);
+}
+
+// COLORS :)
+.box:nth-child(1n) {
+  background-color: #3ae374;
+}
+
+.box:nth-child(2n) {
+  background-color: #67e6dc;
+}
+
+.box:nth-child(3n) {
+  background-color: #17c0eb;
+}
+
+.box:nth-child(4n) {
+  background-color: #7158e2;
+}
+
+.box:nth-child(5n) {
+  background-color: #3d3d3d;
+}
+
+.box:nth-child(6n) {
+  background-color: #fff200;
+}
+
+.box:nth-child(7n) {
+  background-color: #ff9f1a;
+}
+
+.box:nth-child(8n) {
+  background-color: #ff3838;
+}
+
+.box:nth-child(9n) {
+  background-color: #ffb8b8;
+}
+
+.box:nth-child(10n) {
+  background-color: #c56cf0;
+}

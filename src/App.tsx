@@ -1,23 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Board from "./Board";
+import Dice, { DiceValues } from "./Dice";
 
 function App() {
+  function handleOnDiceChange(value: DiceValues, rolling: boolean) {
+    console.log({ value, rolling });
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <h1>Drink till you die</h1>
+        <Dice onChange={handleOnDiceChange} />
+        <Board />
       </header>
     </div>
   );
