@@ -9,8 +9,7 @@ import {
   faDiceSix,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Dice.css";
-
-export type DiceValues = 1 | 2 | 3 | 4 | 5 | 6;
+import { DiceValues } from "./types";
 
 interface Props {
   onChange: (value: DiceValues, rolling: boolean) => void;

@@ -22,8 +22,7 @@
   @return $areas;
 }
 
-@mixin boxes($x, $y) {
-  $total: $x * $y;
+@mixin boxes($total) {
   @for $i from 1 through $total {
     .box-#{$i} {
       grid-area: box-#{$i};
@@ -62,8 +61,8 @@
   display: grid;
   border: 3px solid black;
   grid-auto-rows: 1fr;
-  grid-template-areas: generateGrid(10, 10);
-  @include box-edges(10, 10);
+  grid-template-areas: generateGrid(6, 10);
+  @include box-edges(6, 10);
   max-width: 1200px;
   margin: 15px auto;
   color: white;
@@ -90,7 +89,7 @@
   text-align: center;
 }
 
-@include boxes(10, 10);
+@include boxes(60);
 
 .g3x8 {
   grid-template-areas: generateGrid(3, 8);

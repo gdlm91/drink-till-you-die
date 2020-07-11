@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.css";
 import Board from "./Board";
-import Dice, { DiceValues } from "./Dice";
+import Dice from "./Dice";
+import { DiceValues } from "./types";
 
 function App() {
   function handleOnDiceChange(value: DiceValues, rolling: boolean) {
