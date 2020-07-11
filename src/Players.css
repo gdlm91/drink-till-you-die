@@ -1,5 +1,6 @@
 .Players-container {
   display: flex;
+  align-items: center;
 }
 
 .emoji-player {

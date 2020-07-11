@@ -55,7 +55,6 @@ const Dice: React.FC<Props> = ({ onChange }) => {
 
   return (
     <div className="Dice">
-      <p>Hola soy dadito</p>
       <button className={`dice d-${value}`} onClick={handleDiceThrow}>
         {diceIcon[value]}
       </button>

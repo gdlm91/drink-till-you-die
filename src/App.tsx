@@ -17,6 +17,7 @@ const fakeAction: Action = {
 const fakeUser: User = {
   name: "Lula",
   emoji: "",
+  active: false,
 };
 
 interface Props {
@@ -47,19 +48,18 @@ function App() {
           <h1>Drink till you die 🍻</h1>
           <Players />
         </div>
-        <Button variant="primary" onClick={() => setActionModal(true)}>
-          Launch vertically centered modal
-        </Button>
-
-        <ActionModal
-          show={actionModalShow}
-          onHide={() => setActionModal(false)}
-          action={fakeAction}
-          user={fakeUser}
-        />
-        <Board />
       </header>
+      <Board />
       <Dice onChange={handleOnDiceChange} />
+      <Button variant="primary" onClick={() => setActionModal(true)}>
+        Launch vertically centered modal
+      </Button>
+      <ActionModal
+        show={actionModalShow}
+        onHide={() => setActionModal(false)}
+        action={fakeAction}
+        user={fakeUser}
+      />
       <Button variant="primary" onClick={() => setRegistrationModal(true)}>
         Registration
       </Button>

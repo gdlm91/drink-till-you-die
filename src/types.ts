@@ -1,6 +1,7 @@
 export interface User {
   name: string;
   emoji: string;
+  active: boolean;
 }
 
 export interface Action {

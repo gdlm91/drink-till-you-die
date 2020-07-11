@@ -5,12 +5,12 @@ import "./Players.css";
 import Token from "./Token";
 
 const fakeUsers: User[] = [
-  { name: "cinthia", emoji: "smiley" },
-  { name: "Gerardo", emoji: "heart_eyes" },
-  { name: "Britney", emoji: ":alien:" },
-  { name: "Lady Gaga", emoji: ":alien:" },
-  { name: "Arianna Grande", emoji: ":alien:" },
-  { name: "Ricky", emoji: ":alien:" },
+  { name: "cinthia", emoji: "smiley", active: false },
+  { name: "Gerardo", emoji: "heart_eyes", active: false },
+  { name: "Britney", emoji: ":alien:", active: true },
+  { name: "Lady Gaga", emoji: ":alien:", active: false },
+  { name: "Arianna Grande", emoji: ":alien:", active: false },
+  { name: "Ricky", emoji: ":alien:", active: false },
 ];
 
 function Players() {
