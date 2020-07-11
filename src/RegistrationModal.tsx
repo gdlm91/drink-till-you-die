@@ -1,0 +1,54 @@
+import React, { useState } from "react";
+import "emoji-mart/css/emoji-mart.css";
+import { Picker, EmojiData } from "emoji-mart";
+import Modal, { ModalProps } from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+
+interface Props extends ModalProps {
+  onSubmit: (name: string, emoji: string) => void;
+}
+
+const RegistrationModal: React.FC<Props> = ({ onSubmit, ...props }) => {
+  const [name, setName] = useState("");
+  const [emoji, setEmoji] = useState(":crown:");
+
+  const handleNameChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const { value } = e.target as HTMLInputElement;
+    setName(value);
+  };
+
+  const handleEmojiPick = (emoji: EmojiData) => {
+    setEmoji(emoji.id || "");
+  };
+
+  const handleOnSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    onSubmit(name, emoji);
+  };
+
+  return (
+    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
+      <Form onSubmit={handleOnSubmit}>
+        <Modal.Header>
+          <Modal.Title id="contained-modal-title-vcenter">Welcome!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Control
+            type="text"
+            placeholder="First name"
+            value={name}
+            onChange={(e) => handleNameChange(e as any)}
+          />
+          <Picker set="apple" emoji={emoji} onSelect={handleEmojiPick} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button type="submit">Guardar</Button>
+        </Modal.Footer>
+      </Form>
+    </Modal>
+  );
+};
+
+export default RegistrationModal;

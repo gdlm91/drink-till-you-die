@@ -1,0 +1,7 @@
+.Players-container {
+  display: flex;
+}
+
+.emoji-player {
+  margin-left: -12px;
+}

@@ -6,6 +6,7 @@ import Dice from "./Dice";
 import Players from "./Players";
 import ActionModal from "./ActionModal";
 import { DiceValues, Action, User } from "./types";
+import RegistrationModal from "./RegistrationModal";
 
 const fakeAction: Action = {
   id: 23,
@@ -27,11 +28,17 @@ interface Props {
 }
 
 function App() {
-  const [modalShow, setModalShow] = useState(false);
+  const [actionModalShow, setActionModal] = useState(false);
+  const [registrationModalShow, setRegistrationModal] = useState(false);
 
   function handleOnDiceChange(value: DiceValues, rolling: boolean) {
     console.log({ value, rolling });
   }
+
+  const handleOfRegister = (name: string, emoji: string) => {
+    setRegistrationModal(false);
+    console.log({ name, emoji });
+  };
 
   return (
     <div className="App">
@@ -40,19 +47,26 @@ function App() {
           <h1>Drink till you die 🍻</h1>
           <Players />
         </div>
-        <Button variant="primary" onClick={() => setModalShow(true)}>
+        <Button variant="primary" onClick={() => setActionModal(true)}>
           Launch vertically centered modal
         </Button>
 
         <ActionModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
+          show={actionModalShow}
+          onHide={() => setActionModal(false)}
           action={fakeAction}
           user={fakeUser}
         />
         <Board />
       </header>
       <Dice onChange={handleOnDiceChange} />
+      <Button variant="primary" onClick={() => setRegistrationModal(true)}>
+        Registration
+      </Button>
+      <RegistrationModal
+        show={registrationModalShow}
+        onSubmit={handleOfRegister}
+      />
     </div>
   );
 }
