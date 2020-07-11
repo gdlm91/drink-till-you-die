@@ -5,8 +5,6 @@ import Token from "./Token";
 const fakeUser: User = { name: "cinthia", emoji: "smiley" };
 const fakeUser2: User = { name: "Gerardo", emoji: "heart_eyes" };
 const fakeUser3: User = { name: "Britney", emoji: ":alien:" };
-const fakeUser4: User = { name: "Lisa", emoji: ":crown:" };
-const fakeUser5: User = { name: "Lisa", emoji: ":scream:" };
 
 interface Props {
   action: Action;

@@ -13,9 +13,10 @@ function App() {
     <div className="App">
       <header>
         <h1>Drink till you die</h1>
-        <Dice onChange={handleOnDiceChange} />
+
         <Board />
       </header>
+      <Dice onChange={handleOnDiceChange} />
     </div>
   );
 }

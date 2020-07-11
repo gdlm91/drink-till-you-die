@@ -1,8 +1,18 @@
 .dice {
-  background: none;
+  position: fixed;
+  z-index: 10;
+  bottom: 40px;
+  right: 40px;
+  background-color: white;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  -webkit-box-shadow: 2px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 6px 5px 0px rgba(0, 0, 0, 0.75);
   border: none;
   font-size: 60px;
-  padding: 20px;
+  padding: 10px 20px;
   transition-duration: 0.2s;
   transition-property: color;
 }
