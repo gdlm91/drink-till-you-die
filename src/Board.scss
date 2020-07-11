@@ -66,6 +66,7 @@
   @include box-edges(10, 10);
   max-width: 1200px;
   margin: 15px auto;
+  color: white;
 }
 
 // Hack for squared grids
@@ -86,6 +87,7 @@
   box-sizing: border-box;
   border-top: 3px solid black;
   border-bottom: 3px solid black;
+  text-align: center;
 }
 
 @include boxes(10, 10);
@@ -110,41 +112,25 @@
 
 // COLORS :)
 .box:nth-child(1n) {
-  background-color: #3ae374;
-}
-
-.box:nth-child(2n) {
-  background-color: #67e6dc;
+  background-color: #a405d4;
 }
 
 .box:nth-child(3n) {
-  background-color: #17c0eb;
-}
-
-.box:nth-child(4n) {
-  background-color: #7158e2;
+  background-color: #34ebff;
 }
 
 .box:nth-child(5n) {
-  background-color: #3d3d3d;
+  background-color: #00d51b;
+}
+
+.box:nth-child(2n) {
+  background-color: #f6db35;
+}
+
+.box:nth-child(4n) {
+  background-color: #f88400;
 }
 
 .box:nth-child(6n) {
-  background-color: #fff200;
-}
-
-.box:nth-child(7n) {
-  background-color: #ff9f1a;
-}
-
-.box:nth-child(8n) {
-  background-color: #ff3838;
-}
-
-.box:nth-child(9n) {
-  background-color: #ffb8b8;
-}
-
-.box:nth-child(10n) {
-  background-color: #c56cf0;
+  background-color: #df3100;
 }
