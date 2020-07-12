@@ -57,12 +57,14 @@
   }
 }
 
+$total: 66;
+
 .Board {
   display: grid;
   border: 3px solid black;
   grid-auto-rows: 1fr;
-  grid-template-areas: generateGrid(6, 10);
-  @include box-edges(6, 10);
+  grid-template-areas: generateGrid(6, 11);
+  @include box-edges(6, 11);
   max-width: 1200px;
   margin: 15px auto;
   color: white;
@@ -89,7 +91,7 @@
   text-align: center;
 }
 
-@include boxes(60);
+@include boxes($total);
 
 .g3x8 {
   grid-template-areas: generateGrid(3, 8);
