@@ -1,5 +1,6 @@
 import { Action } from "redux";
 import { Epic as _Epic } from "redux-observable";
+import { DiceState as _DiceState } from "../types";
 
 //#region __UTILS
 
@@ -7,19 +8,16 @@ export interface __IGNORE extends Action {
   type: "__IGNORE";
 }
 
-//#endregion
-
-//#region INIT
-
 export interface INIT extends Action {
   type: "INIT";
 }
 
 export interface INIT_AUTH extends Action {
   type: "INIT_AUTH";
-  payload: {
-    accountId: string;
-  };
+}
+
+export interface FINALIZE extends Action {
+  type: "FINALIZE";
 }
 
 //#endregion
@@ -66,8 +64,23 @@ export type PlayerState =
 
 //#region DICE
 
+export type DiceState = _DiceState | undefined;
+
+export interface DICE_INIT extends Action {
+  type: "DICE_INIT";
+}
+
 export interface DICE_ROLL extends Action {
   type: "DICE_ROLL";
+}
+
+export interface DICE_ROLLED extends Action {
+  type: "DICE_ROLLED";
+  payload: DiceState;
+}
+
+export interface DICE_FINALIZE extends Action {
+  type: "DICE_FINALIZE";
 }
 
 //#endregion
@@ -102,18 +115,23 @@ export interface FAKE_LOADED extends Action {
 export interface State {
   fake?: FakeState;
   player?: PlayerState;
+  dice?: DiceState;
 }
 
 export type Actions =
   | __IGNORE
   | INIT
   | INIT_AUTH
+  | FINALIZE
   | PLAYER_INIT
   | PLAYER_SHOW_REGISTRATION
   | PLAYER_REGISTER
   | PLAYER_LOAD
   | PLAYER_UNREGISTER
+  | DICE_INIT
   | DICE_ROLL
+  | DICE_ROLLED
+  | DICE_FINALIZE
   | FAKE_SKIP
   | FAKE_INIT
   | FAKE_LOADED;

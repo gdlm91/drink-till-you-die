@@ -39,7 +39,7 @@ app.post("/roll", async (req, res) => {
     setTimeout(() => {
       setDiceState({
         isRolling: false,
-        value: newValue,
+        value: newValue as DiceValues,
       });
     }, 500 * rolls);
   };
