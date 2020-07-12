@@ -1,15 +1,13 @@
 import { Reducer } from "redux";
-import { Epic, combineEpics, ofType } from "redux-observable";
+import { combineEpics, ofType } from "redux-observable";
 import { tap, mapTo, switchMap, map } from "rxjs/operators";
 import { objectVal } from "rxfire/database";
 
 import { db } from "../db/firebase";
 import { reduceReducers } from "./utils";
-import { Actions, State, FakeState, FAKE_LOADED } from "./types";
+import { Actions, Epic, FakeState, FAKE_LOADED } from "./types";
 
 export type FakeReducer = Reducer<FakeState, Actions>;
-
-export type FakeEpic = Epic<Actions, Actions, State>;
 
 /** REDUCERS */
 /** -------- */
@@ -34,7 +32,7 @@ const fakeLoadedReducer: FakeReducer = (state = {}, action) => {
 /** EPICS */
 /** ----- */
 
-const fakeInitEpic: FakeEpic = (action$) =>
+const fakeInitEpic: Epic = (action$) =>
   action$.pipe(
     ofType("FAKE_INIT"),
     tap((action) => console.log("fakeInitEpic", { action })),
@@ -42,7 +40,7 @@ const fakeInitEpic: FakeEpic = (action$) =>
     map((value) => ({ type: "FAKE_LOADED", payload: value }))
   );
 
-const fakeLogEpic: FakeEpic = (action$, state$) =>
+const fakeLogEpic: Epic = (action$, state$) =>
   state$.pipe(
     tap((state) => {
       console.log("fakeLogEpic", { state });

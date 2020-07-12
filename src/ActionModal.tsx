@@ -1,20 +1,22 @@
 import React from "react";
 import Modal, { ModalProps } from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { Action } from "./types";
+
+import { Action, Player } from "./types";
 
 interface Props extends ModalProps {
+  player: Player;
   action: Action;
 }
 
 const ActionModal: React.FC<Props> = (props) => {
-  const { action, onHide, user } = props;
+  const { action, player, onHide } = props;
 
   return (
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {user.name}
+          {player.name}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

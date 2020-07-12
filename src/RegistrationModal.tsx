@@ -7,9 +7,14 @@ import Form from "react-bootstrap/Form";
 
 interface Props extends ModalProps {
   onSubmit: (name: string, emoji: string) => void;
+  loading: boolean;
 }
 
-const RegistrationModal: React.FC<Props> = ({ onSubmit, ...props }) => {
+const RegistrationModal: React.FC<Props> = ({
+  onSubmit,
+  loading,
+  ...props
+}) => {
   const [name, setName] = useState("");
   const [emoji, setEmoji] = useState(":crown:");
 
@@ -25,6 +30,10 @@ const RegistrationModal: React.FC<Props> = ({ onSubmit, ...props }) => {
   const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (loading) {
+      return;
+    }
+
     onSubmit(name, emoji);
   };
 
@@ -36,6 +45,7 @@ const RegistrationModal: React.FC<Props> = ({ onSubmit, ...props }) => {
         </Modal.Header>
         <Modal.Body>
           <Form.Control
+            disabled={loading}
             type="text"
             placeholder="First name"
             value={name}
@@ -44,7 +54,9 @@ const RegistrationModal: React.FC<Props> = ({ onSubmit, ...props }) => {
           <Picker set="apple" emoji={emoji} onSelect={handleEmojiPick} />
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit">Guardar</Button>
+          <Button type="submit" disabled={loading}>
+            Guardar
+          </Button>
         </Modal.Footer>
       </Form>
     </Modal>

@@ -6,10 +6,10 @@ import { catchError } from "rxjs/operators";
 import { State, Actions } from "./types";
 
 import { initEpic } from "./init.duck";
-import { fakeEpics, fakeReducers } from "./fake.duck";
+import { playerEpics, playerReducers } from "./player.duck";
 
 const rootEpic: Epic = (action$, state$, dependencies) =>
-  combineEpics(initEpic, fakeEpics)(action$, state$, dependencies).pipe(
+  combineEpics(initEpic, playerEpics)(action$, state$, dependencies).pipe(
     catchError((error, source) => {
       console.error(error);
       return source;
@@ -18,7 +18,9 @@ const rootEpic: Epic = (action$, state$, dependencies) =>
 
 const epicMiddleware = createEpicMiddleware();
 
-const rootReducer = combineReducers<State, Actions>({ fake: fakeReducers });
+const rootReducer = combineReducers<State, Actions>({
+  player: playerReducers,
+});
 
 const store = createStore(
   rootReducer,

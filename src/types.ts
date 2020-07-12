@@ -1,7 +1,9 @@
-export interface User {
+export interface Player {
+  accountId: string;
   name: string;
   emoji: string;
   active: boolean;
+  connected?: boolean;
 }
 
 export interface Action {

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
+
 import "./App.css";
+import { DiceValues, Action, Player } from "./types";
+import { usePlayer } from "./hooks";
 import Board from "./Board";
 import Dice from "./Dice";
 import Players from "./Players";
 import ActionModal from "./ActionModal";
-import { DiceValues, Action, User } from "./types";
 import RegistrationModal from "./RegistrationModal";
 
 const fakeAction: Action = {
@@ -14,31 +16,23 @@ const fakeAction: Action = {
   explanation: "Beben todos!",
 };
 
-const fakeUser: User = {
+const fakePlayer: Player = {
+  accountId: "fake1",
   name: "Lula",
   emoji: "",
   active: false,
 };
 
-interface Props {
-  action: Action;
-}
-
-interface Props {
-  user: User;
-}
-
 function App() {
+  const { player, register } = usePlayer();
   const [actionModalShow, setActionModal] = useState(false);
-  const [registrationModalShow, setRegistrationModal] = useState(false);
 
   function handleOnDiceChange(value: DiceValues, rolling: boolean) {
     console.log({ value, rolling });
   }
 
   const handleOfRegister = (name: string, emoji: string) => {
-    setRegistrationModal(false);
-    console.log({ name, emoji });
+    register({ name, emoji });
   };
 
   return (
@@ -58,13 +52,11 @@ function App() {
         show={actionModalShow}
         onHide={() => setActionModal(false)}
         action={fakeAction}
-        user={fakeUser}
+        player={fakePlayer}
       />
-      <Button variant="primary" onClick={() => setRegistrationModal(true)}>
-        Registration
-      </Button>
       <RegistrationModal
-        show={registrationModalShow}
+        loading={!!player?.loading}
+        show={player?.requestRegistration}
         onSubmit={handleOfRegister}
       />
     </div>

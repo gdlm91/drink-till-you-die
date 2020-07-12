@@ -1,24 +1,29 @@
 import React from "react";
 
-import { User } from "./types";
+import { Player } from "./types";
 import "./Players.css";
 import Token from "./Token";
 
-const fakeUsers: User[] = [
-  { name: "cinthia", emoji: "smiley", active: false },
-  { name: "Gerardo", emoji: "heart_eyes", active: false },
-  { name: "Britney", emoji: ":alien:", active: true },
-  { name: "Lady Gaga", emoji: ":alien:", active: false },
-  { name: "Arianna Grande", emoji: ":alien:", active: false },
-  { name: "Ricky", emoji: ":alien:", active: false },
+const fakePlayers: Player[] = [
+  { name: "cinthia", emoji: "smiley", active: false, accountId: "fake5" },
+  { name: "Gerardo", emoji: "heart_eyes", active: false, accountId: "fake6" },
+  { name: "Britney", emoji: ":alien:", active: true, accountId: "fake7" },
+  { name: "Lady Gaga", emoji: ":alien:", active: false, accountId: "fake8" },
+  {
+    name: "Arianna Grande",
+    emoji: ":alien:",
+    active: false,
+    accountId: "fake9",
+  },
+  { name: "Ricky", emoji: ":alien:", active: false, accountId: "fake10" },
 ];
 
 function Players() {
   return (
     <div className="Players-container">
-      {fakeUsers.map((user) => (
+      {fakePlayers.map((player) => (
         <div className="emoji-player">
-          <Token user={user} />
+          <Token player={player} />
         </div>
       ))}
     </div>
