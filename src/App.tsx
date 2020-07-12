@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
-import "./App.css";
+import "./App.scss";
 import { DiceValues, Action, Player } from "./types";
 import { usePlayer } from "./hooks";
 import Board from "./Board";

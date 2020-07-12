@@ -1,8 +1,19 @@
+@font-face {
+  font-family: "FunnyKid";
+  src: local("FunnyKid"), url("/fonts/FunnyKid.ttf") format("truetype");
+}
+
 .container-title-players {
   display: flex;
   justify-content: space-between;
   padding: 20px;
   align-items: center;
+}
+
+.container-title-players h1 {
+  font-family: "FunnyKid";
+  font-size: 60px;
+  color: #080701;
 }
 
 header {
