@@ -7,9 +7,14 @@ import { State, Actions } from "./types";
 
 import { initEpic } from "./init.duck";
 import { playerEpics, playerReducers } from "./player.duck";
+import { diceEpics } from "./dice.duck";
 
 const rootEpic: Epic = (action$, state$, dependencies) =>
-  combineEpics(initEpic, playerEpics)(action$, state$, dependencies).pipe(
+  combineEpics(initEpic, playerEpics, diceEpics)(
+    action$,
+    state$,
+    dependencies
+  ).pipe(
     catchError((error, source) => {
       console.error(error);
       return source;

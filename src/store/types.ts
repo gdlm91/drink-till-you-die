@@ -64,6 +64,14 @@ export type PlayerState =
 
 //#endregion
 
+//#region DICE
+
+export interface DICE_ROLL extends Action {
+  type: "DICE_ROLL";
+}
+
+//#endregion
+
 //#region FAKE
 
 export type FakeState =
@@ -105,6 +113,7 @@ export type Actions =
   | PLAYER_REGISTER
   | PLAYER_LOAD
   | PLAYER_UNREGISTER
+  | DICE_ROLL
   | FAKE_SKIP
   | FAKE_INIT
   | FAKE_LOADED;
