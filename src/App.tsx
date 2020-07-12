@@ -37,7 +37,12 @@ const App: React.FC = () => {
     <main className="App">
       <header>
         <div className="container-title-players">
-          <h1>Drink till you die 🍻</h1>
+          <h1>
+            Drink till you die{" "}
+            <span role="img" aria-label="beer icon">
+              🍻
+            </span>
+          </h1>
 
           <div className="players-options">
             <Players />
