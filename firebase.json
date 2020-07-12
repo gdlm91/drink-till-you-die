@@ -12,6 +12,9 @@
       }
     ]
   },
+  "functions": {
+    "predeploy": "yarn --cwd \"$RESOURCE_DIR\" build"
+  },
   "emulators": {
     "functions": {
       "port": 5001

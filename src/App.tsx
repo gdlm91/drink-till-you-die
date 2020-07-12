@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 import "./App.scss";
-import { DiceValues, Action, Player } from "./types";
+import { Action, Player } from "./types";
 import { usePlayer } from "./hooks";
 import Board from "./Board";
-import Dice from "./Dice";
+import ControlledDice from "./ControlledDice";
 import Players from "./Players";
 import ActionModal from "./ActionModal";
 import RegistrationModal from "./RegistrationModal";
@@ -28,10 +28,6 @@ const fakePlayer: Player = {
 const App: React.FC = () => {
   const { player, register, unregister } = usePlayer();
   const [actionModalShow, setActionModal] = useState(false);
-
-  const handleOnDiceChange = (value: DiceValues, rolling: boolean) => {
-    console.log({ value, rolling });
-  };
 
   return (
     <main className="App">
@@ -62,7 +58,7 @@ const App: React.FC = () => {
 
       <Board />
 
-      <Dice onChange={handleOnDiceChange} />
+      <ControlledDice />
 
       <Button variant="primary" onClick={() => setActionModal(true)}>
         Launch vertically centered modal

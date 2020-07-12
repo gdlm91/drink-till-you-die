@@ -100,6 +100,9 @@ const playerInitEpic: Epic = (action$) =>
     })
   );
 
+const playerLoadedEpic: Epic = (action$) =>
+  action$.pipe(ofType("PLAYER_LOAD"), mapTo({ type: "INIT_AUTH" }));
+
 const playerRegisterEpic: Epic = (action$) =>
   action$.pipe(
     ofType("PLAYER_REGISTER"),
@@ -139,8 +142,7 @@ const playerUnregisterEpic: Epic = (action$) =>
       return combineLatest(from(ref.remove()), from(user!.delete()));
     }),
     switchMap(() => from(auth.signOut())),
-    // __IGNORE, playerInitEpic will pick up the auth change and reducer will clean up state
-    mapTo({ type: "__IGNORE" })
+    mapTo({ type: "FINALIZE" })
   );
 
 /** EXPORTS */
@@ -156,6 +158,7 @@ export const playerReducers = reduceReducers<PlayerState, Actions>(
 
 export const playerEpics = combineEpics(
   playerInitEpic,
+  playerLoadedEpic,
   playerRegisterEpic,
   playerUnregisterEpic
 );

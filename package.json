@@ -6,6 +6,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.29",
     "@fortawesome/free-solid-svg-icons": "^5.13.1",
     "@fortawesome/react-fontawesome": "^0.1.11",
+    "@testing-library/dom": "^7.20.0",
     "bootstrap": "^4.5.0",
     "emoji-mart": "^3.0.0",
     "firebase": "^7.16.0",
@@ -38,10 +39,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:firebase": "firebase emulators:start --only database",
+    "start:firebase": "firebase emulators:start --only database,functions",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "deploy": "run-s build deploy:firebase",
     "deploy:firebase": "firebase deploy",
     "firebase": "firebase"

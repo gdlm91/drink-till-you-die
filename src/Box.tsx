@@ -25,7 +25,7 @@ const Box: React.FC<Props> = ({ action }) => {
       <p>{action.action}</p>
       <div className="tokens">
         {fakePlayers.map((player) => (
-          <Token player={player} />
+          <Token player={player} key={player.accountId} />
         ))}
       </div>
     </>

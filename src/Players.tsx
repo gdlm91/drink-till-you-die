@@ -22,7 +22,7 @@ function Players() {
   return (
     <div className="Players-container">
       {fakePlayers.map((player) => (
-        <div className="emoji-player">
+        <div className="emoji-player" key={player.accountId}>
           <Token player={player} />
         </div>
       ))}

@@ -13,3 +13,8 @@ export interface Action {
 }
 
 export type DiceValues = 1 | 2 | 3 | 4 | 5 | 6;
+
+export interface DiceState {
+  isRolling?: boolean;
+  value?: DiceValues;
+}
