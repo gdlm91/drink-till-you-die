@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.5.0",
-    "emoji-mart": "^3.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.29",
     "@fortawesome/free-solid-svg-icons": "^5.13.1",
     "@fortawesome/react-fontawesome": "^0.1.11",
+    "bootstrap": "^4.5.0",
+    "emoji-mart": "^3.0.0",
     "firebase": "^7.16.0",
+    "npm-run-all": "^4.1.5",
     "react": "^16.13.1",
     "react-bootstrap": "^1.2.1",
     "react-dom": "^16.13.1",
@@ -30,6 +31,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-redux": "^7.1.9",
     "firebase-admin": "^8.13.0",
+    "firebase-tools": "^8.5.0",
     "node-sass": "^4.14.1",
     "react-scripts": "3.4.1",
     "typescript": "~3.7.2"
@@ -38,7 +40,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "run-s build deploy:firebase",
+    "deploy:firebase": "firebase deploy",
+    "firebase": "firebase"
   },
   "eslintConfig": {
     "extends": "react-app"
