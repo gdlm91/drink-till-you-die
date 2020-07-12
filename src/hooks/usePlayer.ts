@@ -10,5 +10,9 @@ export const usePlayer = () => {
     dispatch({ type: "PLAYER_REGISTER", payload });
   };
 
-  return { player, register };
+  const unregister = () => {
+    dispatch({ type: "PLAYER_UNREGISTER" });
+  };
+
+  return { player, register, unregister };
 };

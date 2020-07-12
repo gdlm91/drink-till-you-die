@@ -1,6 +1,14 @@
 import { Action } from "redux";
 import { Epic as _Epic } from "redux-observable";
 
+//#region __UTILS
+
+export interface __IGNORE extends Action {
+  type: "__IGNORE";
+}
+
+//#endregion
+
 //#region INIT
 
 export interface INIT extends Action {
@@ -15,14 +23,6 @@ export interface INIT_AUTH extends Action {
 }
 
 //#endregion
-
-//#region __UTILS
-
-export interface __IGNORE extends Action {
-  type: "__IGNORE";
-}
-
-////#endregion
 
 //#region PLAYERS
 
@@ -47,6 +47,10 @@ export interface PLAYER_LOAD extends Action {
   payload: {
     accountId: string;
   };
+}
+
+export interface PLAYER_UNREGISTER extends Action {
+  type: "PLAYER_UNREGISTER";
 }
 
 export type PlayerState =
@@ -93,13 +97,14 @@ export interface State {
 }
 
 export type Actions =
+  | __IGNORE
   | INIT
   | INIT_AUTH
-  | __IGNORE
   | PLAYER_INIT
   | PLAYER_SHOW_REGISTRATION
   | PLAYER_REGISTER
   | PLAYER_LOAD
+  | PLAYER_UNREGISTER
   | FAKE_SKIP
   | FAKE_INIT
   | FAKE_LOADED;

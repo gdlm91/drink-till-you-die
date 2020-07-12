@@ -56,12 +56,35 @@ const playerLoadReucer: PlayerReducer = (state = INITIAL_STATE, action) => {
   };
 };
 
+const playerUnregisterReducer: PlayerReducer = (
+  state = INITIAL_STATE,
+  action
+) => {
+  if (action.type !== "PLAYER_UNREGISTER") {
+    return state;
+  }
+
+  return {
+    accountId: undefined,
+    loading: false,
+    active: false,
+    requestRegistration: true,
+  };
+};
+
 /** EPICS */
 /** ----- */
 
 const playerInitEpic: Epic = (action$) =>
   action$.pipe(
     ofType("PLAYER_INIT"),
+    switchMap(() => {
+      const setPersistence$ = from(
+        auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      );
+
+      return setPersistence$;
+    }),
     switchMap(() => authState(auth)),
     map((user) => {
       if (!user) {
@@ -81,13 +104,6 @@ const playerRegisterEpic: Epic = (action$) =>
   action$.pipe(
     ofType("PLAYER_REGISTER"),
     switchMap((action) => {
-      const setPersistence$ = from(
-        auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-      );
-
-      return combineLatest(of(action), setPersistence$);
-    }),
-    switchMap(([action]) => {
       const signIn$ = from(auth.signInAnonymously());
 
       return combineLatest(of(action), signIn$);
@@ -113,14 +129,33 @@ const playerRegisterEpic: Epic = (action$) =>
     mapTo({ type: "__IGNORE" })
   );
 
+const playerUnregisterEpic: Epic = (action$) =>
+  action$.pipe(
+    ofType("PLAYER_UNREGISTER"),
+    switchMap(() => {
+      const user = auth.currentUser;
+      const ref = db.ref(`players/${user?.uid}`);
+
+      return combineLatest(from(ref.remove()), from(user!.delete()));
+    }),
+    switchMap(() => from(auth.signOut())),
+    // __IGNORE, playerInitEpic will pick up the auth change and reducer will clean up state
+    mapTo({ type: "__IGNORE" })
+  );
+
 /** EXPORTS */
 /** ------ */
-
-export const playerEpics = combineEpics(playerInitEpic, playerRegisterEpic);
 
 export const playerReducers = reduceReducers<PlayerState, Actions>(
   INITIAL_STATE,
   playerShowRegistrationReducer,
   playerRegisterReucer,
-  playerLoadReucer
+  playerLoadReucer,
+  playerUnregisterReducer
+);
+
+export const playerEpics = combineEpics(
+  playerInitEpic,
+  playerRegisterEpic,
+  playerUnregisterEpic
 );

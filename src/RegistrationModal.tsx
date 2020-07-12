@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 interface Props extends ModalProps {
-  onSubmit: (name: string, emoji: string) => void;
+  onSubmit: ({ name, emoji }: { name: string; emoji: string }) => void;
   loading: boolean;
 }
 
@@ -34,7 +34,7 @@ const RegistrationModal: React.FC<Props> = ({
       return;
     }
 
-    onSubmit(name, emoji);
+    onSubmit({ name, emoji });
   };
 
   return (

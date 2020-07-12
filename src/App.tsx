@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 import "./App.css";
 import { DiceValues, Action, Player } from "./types";
@@ -23,28 +25,40 @@ const fakePlayer: Player = {
   active: false,
 };
 
-function App() {
-  const { player, register } = usePlayer();
+const App: React.FC = () => {
+  const { player, register, unregister } = usePlayer();
   const [actionModalShow, setActionModal] = useState(false);
 
-  function handleOnDiceChange(value: DiceValues, rolling: boolean) {
+  const handleOnDiceChange = (value: DiceValues, rolling: boolean) => {
     console.log({ value, rolling });
-  }
-
-  const handleOfRegister = (name: string, emoji: string) => {
-    register({ name, emoji });
   };
 
   return (
-    <div className="App">
+    <main className="App">
       <header>
         <div className="container-title-players">
           <h1>Drink till you die 🍻</h1>
-          <Players />
+
+          <div className="players-options">
+            <Players />
+            {player?.accountId && (
+              <Button
+                variant="outline-danger"
+                size="lg"
+                onClick={unregister}
+                disabled={player.loading}
+              >
+                <FontAwesomeIcon icon={faSignOutAlt} />
+              </Button>
+            )}
+          </div>
         </div>
       </header>
+
       <Board />
+
       <Dice onChange={handleOnDiceChange} />
+
       <Button variant="primary" onClick={() => setActionModal(true)}>
         Launch vertically centered modal
       </Button>
@@ -57,10 +71,10 @@ function App() {
       <RegistrationModal
         loading={!!player?.loading}
         show={player?.requestRegistration}
-        onSubmit={handleOfRegister}
+        onSubmit={register}
       />
-    </div>
+    </main>
   );
-}
+};
 
 export default App;

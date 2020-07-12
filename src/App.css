@@ -2,9 +2,19 @@
   display: flex;
   justify-content: space-between;
   padding: 20px;
+  align-items: center;
 }
 
 header {
   max-width: 1200px;
   margin: 15px auto;
+}
+
+.players-options {
+  display: flex;
+  align-items: center;
+}
+
+.players-options button {
+  margin-left: 25px;
 }
