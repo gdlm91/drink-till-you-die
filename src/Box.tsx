@@ -1,11 +1,18 @@
 import React from "react";
-import { Action, User } from "./types";
+import { Action, Player } from "./types";
 import Token from "./Token";
 import "./Box.css";
 
-const fakeUser: User = { name: "cinthia", emoji: "smiley", active: false };
-const fakeUser2: User = { name: "Gerardo", emoji: "heart_eyes", active: false };
-const fakeUser3: User = { name: "Britney", emoji: ":alien:", active: true };
+const fakePlayers: Player[] = [
+  { name: "cinthia", emoji: "smiley", active: false, accountId: "fake2" },
+  {
+    name: "Gerardo",
+    emoji: "heart_eyes",
+    active: false,
+    accountId: "fake3",
+  },
+  { name: "Britney", emoji: ":alien:", active: true, accountId: "fake4" },
+];
 
 interface Props {
   action: Action;
@@ -17,9 +24,9 @@ const Box: React.FC<Props> = ({ action }) => {
       <h1>{action.id}</h1>
       <p>{action.action}</p>
       <div className="tokens">
-        <Token user={fakeUser} />
-        <Token user={fakeUser2} />
-        <Token user={fakeUser3} />
+        {fakePlayers.map((player) => (
+          <Token player={player} />
+        ))}
       </div>
     </>
   );

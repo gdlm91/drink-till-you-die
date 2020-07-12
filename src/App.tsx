@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+
 import "./App.css";
+import { DiceValues, Action, Player } from "./types";
+import { usePlayer } from "./hooks";
 import Board from "./Board";
 import Dice from "./Dice";
 import Players from "./Players";
 import ActionModal from "./ActionModal";
-import { DiceValues, Action, User } from "./types";
 import RegistrationModal from "./RegistrationModal";
 
 const fakeAction: Action = {
@@ -14,43 +18,47 @@ const fakeAction: Action = {
   explanation: "Beben todos!",
 };
 
-const fakeUser: User = {
+const fakePlayer: Player = {
+  accountId: "fake1",
   name: "Lula",
   emoji: "",
   active: false,
 };
 
-interface Props {
-  action: Action;
-}
-
-interface Props {
-  user: User;
-}
-
-function App() {
+const App: React.FC = () => {
+  const { player, register, unregister } = usePlayer();
   const [actionModalShow, setActionModal] = useState(false);
-  const [registrationModalShow, setRegistrationModal] = useState(false);
 
-  function handleOnDiceChange(value: DiceValues, rolling: boolean) {
+  const handleOnDiceChange = (value: DiceValues, rolling: boolean) => {
     console.log({ value, rolling });
-  }
-
-  const handleOfRegister = (name: string, emoji: string) => {
-    setRegistrationModal(false);
-    console.log({ name, emoji });
   };
 
   return (
-    <div className="App">
+    <main className="App">
       <header>
         <div className="container-title-players">
           <h1>Drink till you die 🍻</h1>
-          <Players />
+
+          <div className="players-options">
+            <Players />
+            {player?.accountId && (
+              <Button
+                variant="outline-danger"
+                size="lg"
+                onClick={unregister}
+                disabled={player.loading}
+              >
+                <FontAwesomeIcon icon={faSignOutAlt} />
+              </Button>
+            )}
+          </div>
         </div>
       </header>
+
       <Board />
+
       <Dice onChange={handleOnDiceChange} />
+
       <Button variant="primary" onClick={() => setActionModal(true)}>
         Launch vertically centered modal
       </Button>
@@ -58,17 +66,15 @@ function App() {
         show={actionModalShow}
         onHide={() => setActionModal(false)}
         action={fakeAction}
-        user={fakeUser}
+        player={fakePlayer}
       />
-      <Button variant="primary" onClick={() => setRegistrationModal(true)}>
-        Registration
-      </Button>
       <RegistrationModal
-        show={registrationModalShow}
-        onSubmit={handleOfRegister}
+        loading={!!player?.loading}
+        show={player?.requestRegistration}
+        onSubmit={register}
       />
-    </div>
+    </main>
   );
-}
+};
 
 export default App;

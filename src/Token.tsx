@@ -1,18 +1,21 @@
 import React from "react";
-import { User } from "./types";
+import { Player } from "./types";
 import "emoji-mart/css/emoji-mart.css";
 import { Emoji } from "emoji-mart";
 import "./Token.css";
 
 interface Props {
-  user: User;
+  player: Player;
 }
 
-const Token: React.FC<Props> = ({ user }) => {
+const Token: React.FC<Props> = ({ player }) => {
   return (
     <>
-      <div title={user.name} className={user.active ? "active emoji" : "emoji"}>
-        <Emoji emoji={user.emoji} size={user.active ? 55 : 40} />
+      <div
+        title={player.name}
+        className={player.active ? "active emoji" : "emoji"}
+      >
+        <Emoji emoji={player.emoji} size={player.active ? 55 : 40} />
       </div>
     </>
   );
