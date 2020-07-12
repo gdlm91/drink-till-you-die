@@ -43,7 +43,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "deploy": "run-s build deploy:firebase",
-    "deploy:firebase": "firebase deploy",
+    "deploy:firebase": "firebase deploy --only database,hosting",
     "firebase": "firebase"
   },
   "eslintConfig": {
