@@ -1,23 +1,13 @@
-import React, { useMemo } from "react";
+import React from "react";
 import Box from "./Box";
-import { Action } from "./types";
+import { actions } from "./actions";
 import "./Board.scss";
 
 function Board() {
-  const actions = useMemo(
-    () =>
-      Array.from({ length: 60 }).fill({
-        id: 1,
-        action: "Do something",
-        explanation: "This is how you do something",
-      }) as Action[],
-    []
-  );
-
   return (
     <div className="Board">
-      {actions.map((action, index) => (
-        <div className={`box box-${index + 1}`} key={index}>
+      {actions.map((action) => (
+        <div className={`box box-${action.id}`} key={action.id}>
           <Box action={action} />
         </div>
       ))}
