@@ -301,6 +301,36 @@ const partialActions: Omit<Action, "id">[] = [
       "El jugador en turno, deberá escoger una personalidad famosa 😎 y describirla, el primer jugador que lo descubra gana, el resto de los perdedores toma un trago 🍺",
   },
   {
+    action: "Yo nunca",
+    explanation:
+      "El  jugador debe decir Yo nunca…🤷‍♀️‍ y luego decir algo que nunca haya hecho, toman aquellos jugadores que lo hayan hecho 💁‍♂️",
+  },
+  {
+    action: "Cultura Chupistica",
+    explanation:
+      "Escoge una categoría que se te ocurra(Ej: Marcas de cigarrillos 🚬, series de televisión 📺, etc) y nombra un elemento de este. Los jugadores deben nombran otros",
+  },
+  {
+    action: "Chiste",
+    explanation:
+      "Cuenta un chiste 😂 lo suficientemente divertido que haga que los demas se rian, los que rian tomaran 🍷 ",
+  },
+  {
+    action: "Subasta",
+    explanation:
+      "Elije una categoria de tu gusto(Ej: Marcas de autos, Marcas de cerveza, etc) ofrece la cantidad de elementos de esa categoria que creas que tu puedes nombrar 🔢, cualquier jugador puede ofrecer más que tu, y asi cada uno puede subir la apuesta. Cuando se estime que ya no habran mas ofertas se cierra la subasta y el jugador ofrecio más 💲, debera nombrar la cantidad de elementos de esa categoria la cual el ofrecio, si este las nombra podra regalar esa cantidad de sorbos o distribuirlos entre los jugadores, pero si el jugador no nombra la cantidad que ofrecio este debera tomarse esa cantidad",
+  },
+  {
+    action: "¿Historia Real?",
+    explanation:
+      "Cuenta una anécdota de tu vida, cuando acabes los demás jugadores deberán decidir si era verdadera o una mentira, cuando todos contestado, se dirá si era real o no. Tomarán 1 sorbo los que se equivoquen 🍸",
+  },
+  {
+    action: "Mudo",
+    explanation:
+      "El jugador en esta casilla deberá permanecer callado 🤐 hasta que finalice el turno, cada vez que hable 😯, deberá tomar un trago 🍹",
+  },
+  {
     action: "Zona libre",
     explanation: "Ya casi ganas! un trago para festejar!! 🍷🍸🍹🍶🍺🥃〽",
   },

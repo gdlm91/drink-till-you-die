@@ -57,17 +57,20 @@
   }
 }
 
-$total: 66;
+@mixin grid-with-edges($x, $y) {
+  grid-template-areas: generateGrid($x, $y);
+  @include box-edges($x, $y);
+}
+
+$total: 72;
 
 .Board {
   display: grid;
   border: 3px solid black;
   grid-auto-rows: 1fr;
-  grid-template-areas: generateGrid(6, 11);
-  @include box-edges(6, 11);
-  max-width: 1200px;
-  margin: 15px auto;
+  margin: 15px;
   color: white;
+  @include grid-with-edges(4, 18);
 }
 
 // Hack for squared grids
@@ -93,24 +96,6 @@ $total: 66;
 
 @include boxes($total);
 
-.g3x8 {
-  grid-template-areas: generateGrid(3, 8);
-
-  @include box-edges(3, 8);
-}
-
-.g4x6 {
-  grid-template-areas: generateGrid(4, 6);
-
-  @include box-edges(4, 6);
-}
-
-.g6x4 {
-  grid-template-areas: generateGrid(6, 4);
-
-  @include box-edges(6, 4);
-}
-
 // COLORS :)
 .box:nth-child(1n) {
   background-color: #a405d4;
@@ -134,4 +119,20 @@ $total: 66;
 
 .box:nth-child(6n) {
   background-color: #df3100;
+}
+
+/* This query was necessary for changing the size of the elements on mobile cellphone*/
+@media only screen and (max-width: 900px) {
+  /*welcome section media query*/
+  .Board {
+    @include grid-with-edges(3, 24);
+  }
+}
+
+/* This query was necessary for changing the size of the elements on mobile cellphone*/
+@media only screen and (max-width: 600px) {
+  /*welcome section media query*/
+  .Board {
+    @include grid-with-edges(2, 36);
+  }
 }

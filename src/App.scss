@@ -3,6 +3,11 @@
   src: local("FunnyKid"), url("/fonts/FunnyKid.ttf") format("truetype");
 }
 
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .container-title-players {
   display: flex;
   justify-content: space-between;
@@ -14,11 +19,6 @@
   font-family: "FunnyKid";
   font-size: 60px;
   color: #080701;
-}
-
-header {
-  max-width: 1200px;
-  margin: 15px auto;
 }
 
 .players-options {
