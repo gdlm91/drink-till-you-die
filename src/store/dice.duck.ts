@@ -34,6 +34,15 @@ const diceRolledReducer: DiceReducer = (state = INITIAL_STATE, action) => {
     return state;
   }
 
+  // means the game is completly empty
+  if (action.payload?.isRolling === undefined) {
+    return {
+      ...state,
+      isRolling: false,
+      value: 1,
+    };
+  }
+
   return {
     ...state,
     ...action.payload,
