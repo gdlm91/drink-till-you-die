@@ -21,7 +21,7 @@ const fakeAction: Action = {
 const fakePlayer: Player = {
   accountId: "fake1",
   name: "Lula",
-  emoji: "",
+  emoji: ":crown:",
   active: false,
 };
 
@@ -80,6 +80,7 @@ const App: React.FC = () => {
         onHide={() => setActionModal(false)}
         action={fakeAction}
         player={fakePlayer}
+        emoji={fakePlayer}
       />
       <RegistrationModal
         loading={!!player?.loading}

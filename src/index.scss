@@ -3,4 +3,34 @@
 body {
   margin: 0;
   background-color: #e8eaed;
+  font-family: "Balsamiq Sans", cursive;
+}
+
+.colorful-button {
+  animation: button 6s ease infinite;
+  border: none;
+}
+
+@keyframes button {
+  0% {
+    background-color: #a405d4;
+  }
+  16% {
+    background-color: #f6db35;
+  }
+  32% {
+    background-color: #34ebff;
+  }
+  48% {
+    background-color: #f88400;
+  }
+  64% {
+    background-color: #df3100;
+  }
+  80% {
+    background-color: #00d51b;
+  }
+  100% {
+    background-color: #a405d4;
+  }
 }

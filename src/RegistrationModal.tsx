@@ -5,6 +5,8 @@ import Modal, { ModalProps } from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./RegistrationModal.scss";
+import { Emoji } from "emoji-mart";
+import InputGroup from "react-bootstrap/InputGroup";
 
 interface Props extends ModalProps {
   onSubmit: ({ name, emoji }: { name: string; emoji: string }) => void;
@@ -47,19 +49,31 @@ const RegistrationModal: React.FC<Props> = ({
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Label>Usuario</Form.Label>
-          <Form.Control
-            disabled={loading}
-            type="text"
-            placeholder="Ingrese usuario aquí"
-            value={name}
-            onChange={(e) => handleNameChange(e as any)}
-          />
-          <Form.Label>Usuario</Form.Label>
-          <Picker set="apple" emoji={emoji} onSelect={handleEmojiPick} />
+          <div className="user">
+            <Form.Label>Escoge usuario y ficha!</Form.Label>
+            <InputGroup className="mb-3">
+              <InputGroup.Prepend>
+                <InputGroup.Text id="basic-addon1">
+                  <Emoji emoji={emoji} size={30} />
+                </InputGroup.Text>
+              </InputGroup.Prepend>
+              <Form.Control
+                required
+                size="lg"
+                disabled={loading}
+                type="text"
+                placeholder="Ingrese usuario aquí"
+                value={name}
+                onChange={(e) => handleNameChange(e as any)}
+              />
+            </InputGroup>
+          </div>
+          <div className="picker">
+            <Picker set="apple" emoji={emoji} onSelect={handleEmojiPick} />
+          </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit" disabled={loading}>
+          <Button className="colorful-button" type="submit" disabled={loading}>
             Guardar
           </Button>
         </Modal.Footer>
