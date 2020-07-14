@@ -1,25 +1,20 @@
 import React, { useState } from "react";
-import "emoji-mart/css/emoji-mart.css";
-import { Picker, EmojiData } from "emoji-mart";
-import Modal, { ModalProps } from "react-bootstrap/Modal";
+import { Picker, EmojiData, Emoji } from "emoji-mart";
+import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "./RegistrationModal.scss";
-import { Emoji } from "emoji-mart";
 import InputGroup from "react-bootstrap/InputGroup";
 
-interface Props extends ModalProps {
-  onSubmit: ({ name, emoji }: { name: string; emoji: string }) => void;
-  loading: boolean;
-}
+import "emoji-mart/css/emoji-mart.css";
 
-const RegistrationModal: React.FC<Props> = ({
-  onSubmit,
-  loading,
-  ...props
-}) => {
+import "./RegistrationModal.scss";
+import { useAccount } from "./hooks";
+
+const RegistrationModal: React.FC = () => {
+  const { account, register } = useAccount();
   const [name, setName] = useState("");
   const [emoji, setEmoji] = useState(":crown:");
+  const loading = !account || account.loading;
 
   const handleNameChange = (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.target as HTMLInputElement;
@@ -37,11 +32,15 @@ const RegistrationModal: React.FC<Props> = ({
       return;
     }
 
-    onSubmit({ name, emoji });
+    register({ name, emoji });
   };
 
   return (
-    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
+    <Modal
+      show={account?.requestRegistration}
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
       <Form onSubmit={handleOnSubmit}>
         <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">
