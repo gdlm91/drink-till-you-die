@@ -1,0 +1,9 @@
+.PlayersStar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.emoji-player-Start {
+  padding: 5px;
+}

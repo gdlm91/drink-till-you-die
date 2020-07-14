@@ -8,17 +8,11 @@
   margin: 0 auto;
 }
 
-.container-title-players {
+.container-button-players {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 40px 20px;
   align-items: center;
-}
-
-.container-title-players h1 {
-  font-family: "FunnyKid";
-  font-size: 60px;
-  color: #080701;
 }
 
 .players-options {
@@ -26,6 +20,30 @@
   align-items: center;
 }
 
-.players-options button {
-  margin-left: 25px;
+.drink-till-you-die {
+  font-family: "FunnyKid";
+  background-color: rgba(192, 211, 204, 0.342);
+  margin: 15px;
+  margin-bottom: 0px;
+  padding: 40px 0;
+
+  h1 {
+    margin: 0;
+    font-size: 50px;
+    text-align: center;
+  }
+}
+
+.you-win-box {
+  font-family: "FunnyKid";
+  background-color: rgba(192, 211, 204, 0.342);
+  margin: 15px;
+  margin-top: 0px;
+  padding: 40px 0;
+
+  h1 {
+    margin: 0;
+    font-size: 50px;
+    text-align: center;
+  }
 }

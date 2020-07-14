@@ -4,6 +4,7 @@ import { Picker, EmojiData } from "emoji-mart";
 import Modal, { ModalProps } from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import "./RegistrationModal.scss";
 
 interface Props extends ModalProps {
   onSubmit: ({ name, emoji }: { name: string; emoji: string }) => void;
@@ -41,16 +42,20 @@ const RegistrationModal: React.FC<Props> = ({
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Form onSubmit={handleOnSubmit}>
         <Modal.Header>
-          <Modal.Title id="contained-modal-title-vcenter">Welcome!</Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Bienvenido!
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <Form.Label>Usuario</Form.Label>
           <Form.Control
             disabled={loading}
             type="text"
-            placeholder="First name"
+            placeholder="Ingrese usuario aquí"
             value={name}
             onChange={(e) => handleNameChange(e as any)}
           />
+          <Form.Label>Usuario</Form.Label>
           <Picker set="apple" emoji={emoji} onSelect={handleEmojiPick} />
         </Modal.Body>
         <Modal.Footer>
