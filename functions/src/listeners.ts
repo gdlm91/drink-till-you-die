@@ -73,6 +73,10 @@ export const nextPosition = functions.database
       return;
     }
 
+    if (!gameState.currentPlayer.accountId) {
+      return;
+    }
+
     const { accountId } = gameState.currentPlayer;
     const currentPosition =
       gameState?.positions[gameState.currentPlayer.accountId];

@@ -67,6 +67,11 @@ app.post("/next-player", async (req, res) => {
   const players: PlayersList = (await playersRef.once("value")).val();
   const playersKeys: string[] = Object.keys(players);
 
+  if (!playerState.accountId) {
+    res.json("No current player... Something must be broken");
+    return;
+  }
+
   const currentPlayerIndex = playersKeys.indexOf(playerState.accountId);
   // create a stack of players without the current player, going from the current player all the way back to it's position.
   const playersStack = [

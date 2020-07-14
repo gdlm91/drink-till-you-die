@@ -3,7 +3,6 @@ export interface Player {
   name: string;
   emoji: string;
   connected: boolean;
-  active?: boolean;
 }
 
 export interface PlayersList {
@@ -24,7 +23,7 @@ export interface DiceState {
 }
 
 export interface CurrentPlayerState {
-  accountId: string;
+  accountId?: string;
 }
 
 export interface PositionsState {

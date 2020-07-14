@@ -11,7 +11,7 @@ import { PlayersList } from "../types";
 
 export type PlayersReducer = Reducer<PlayersState, Actions>;
 
-const INITIAL_STATE: PlayersState = [];
+const INITIAL_STATE: PlayersState = {};
 
 /** REDUCERS */
 /** -------- */
@@ -24,7 +24,7 @@ const playersLoadedReducer: PlayersReducer = (
     return state;
   }
 
-  return [...(Object.values(action.payload) || INITIAL_STATE)];
+  return { ...(action.payload || INITIAL_STATE) };
 };
 
 const playersFinalizedReducer: PlayersReducer = (

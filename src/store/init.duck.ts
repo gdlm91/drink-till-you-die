@@ -15,7 +15,15 @@ const initEpic: Epic = (action$) =>
 const initAuthorizedEpic: Epic = (action$) =>
   action$.pipe(
     ofType("INIT_AUTH"),
-    flatMap(() => of<Actions>({ type: "DICE_INIT" }, { type: "PLAYERS_INIT" }))
+    flatMap(() =>
+      of<Actions>(
+        { type: "PLAYERS_INIT" },
+        { type: "GAME_INIT" },
+        { type: "DICE_INIT" },
+        { type: "CURRENT_PLAYER_INIT" },
+        { type: "POSITIONS_INIT" }
+      )
+    )
   );
 
 export const initEpics = combineEpics(initEpic, initAuthorizedEpic);

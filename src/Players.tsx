@@ -9,7 +9,7 @@ function Players() {
   return (
     <div className="Players-container">
       {players &&
-        players.map((player) => (
+        Object.values(players).map((player) => (
           <div className="emoji-player" key={player.accountId}>
             <Token player={player} />
           </div>
