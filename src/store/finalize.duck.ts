@@ -8,5 +8,7 @@ import { Actions, Epic } from "./types";
 export const finalizeEpic: Epic = (action$) =>
   action$.pipe(
     ofType("FINALIZE"),
-    flatMap(() => of<Actions>({ type: "DICE_FINALIZE" }))
+    flatMap(() =>
+      of<Actions>({ type: "DICE_FINALIZE" }, { type: "PLAYERS_FINALIZE" })
+    )
   );

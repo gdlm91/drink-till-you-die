@@ -1,6 +1,6 @@
 import { Action } from "redux";
 import { Epic as _Epic } from "redux-observable";
-import { DiceState as _DiceState } from "../types";
+import { DiceState as _DiceState, PlayersList, Player } from "../types";
 
 //#region __UTILS
 
@@ -22,7 +22,7 @@ export interface FINALIZE extends Action {
 
 //#endregion
 
-//#region PLAYERS
+//#region ACCOUNT
 
 export interface ACCOUNT_INIT extends Action {
   type: "ACCOUNT_INIT";
@@ -85,11 +85,31 @@ export interface DICE_FINALIZE extends Action {
 
 //#endregion
 
+//#region PLAYERS
+
+export type PlayersState = Player[] | undefined;
+
+export interface PLAYERS_INIT extends Action {
+  type: "PLAYERS_INIT";
+}
+
+export interface PLAYERS_LOADED extends Action {
+  type: "PLAYERS_LOADED";
+  payload: PlayersList;
+}
+
+export interface PLAYERS_FINALIZE extends Action {
+  type: "PLAYERS_FINALIZE";
+}
+
+//#endregion
+
 //#region UNION
 
 export interface State {
   account?: AccountState;
   dice?: DiceState;
+  players?: PlayersState;
 }
 
 export type Actions =
@@ -105,7 +125,10 @@ export type Actions =
   | DICE_INIT
   | DICE_ROLL
   | DICE_ROLLED
-  | DICE_FINALIZE;
+  | DICE_FINALIZE
+  | PLAYERS_INIT
+  | PLAYERS_LOADED
+  | PLAYERS_FINALIZE;
 
 export type Epic = _Epic<Actions, Actions, State>;
 

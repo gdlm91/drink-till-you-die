@@ -6,6 +6,10 @@ export interface Player {
   active?: boolean;
 }
 
+export interface PlayersList {
+  [acountId: string]: Player;
+}
+
 export interface Action {
   id: number;
   action: string;

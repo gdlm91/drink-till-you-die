@@ -1,5 +1,6 @@
 import { Reducer } from "redux";
 import { combineEpics, ofType } from "redux-observable";
+import { of } from "rxjs";
 import { ajax } from "rxjs/ajax";
 import { mapTo, switchMap, map, catchError } from "rxjs/operators";
 import { objectVal } from "rxfire/database";
@@ -7,7 +8,6 @@ import { objectVal } from "rxfire/database";
 import { db } from "../db/firebase";
 import { reduceReducers } from "./utils";
 import { Actions, Epic, DiceState } from "./types";
-import { of } from "rxjs";
 
 export type DiceReducer = Reducer<DiceState, Actions>;
 
