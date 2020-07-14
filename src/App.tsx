@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import "./App.scss";
 import { Action, Player } from "./types";
-import { usePlayer } from "./hooks";
+import { useAccount } from "./hooks";
 import Board from "./Board";
 import ControlledDice from "./ControlledDice";
 import Players from "./Players";
@@ -21,12 +21,12 @@ const fakeAction: Action = {
 const fakePlayer: Player = {
   accountId: "fake1",
   name: "Lula",
-  emoji: "",
+  emoji: ":crown:",
   connected: true,
 };
 
 const App: React.FC = () => {
-  const { player, register, unregister } = usePlayer();
+  const { account, register, unregister } = useAccount();
   const [actionModalShow, setActionModal] = useState(false);
 
   return (
@@ -37,12 +37,12 @@ const App: React.FC = () => {
             <Players />
           </div>
           <div className="button-sign-out">
-            {player?.accountId && (
+            {account?.accountId && (
               <Button
                 variant="outline-danger"
                 size="lg"
                 onClick={unregister}
-                disabled={player.loading}
+                disabled={account.loading}
               >
                 <FontAwesomeIcon icon={faSignOutAlt} />
               </Button>
@@ -83,8 +83,8 @@ const App: React.FC = () => {
         emoji={fakePlayer}
       />
       <RegistrationModal
-        loading={!!player?.loading}
-        show={player?.requestRegistration}
+        loading={!!account?.loading}
+        show={account?.requestRegistration}
         onSubmit={register}
       />
     </main>

@@ -6,12 +6,12 @@ import { State, Actions } from "./types";
 
 import { initEpics } from "./init.duck";
 import { finalizeEpic } from "./finalize.duck";
-import { playerEpics, playerReducers } from "./player.duck";
+import { accountEpics, accountReducers } from "./account.duck";
 import { diceEpics, diceReducers } from "./dice.duck";
 
 const rootEpic: Epic = combineEpics(
   initEpics,
-  playerEpics,
+  accountEpics,
   diceEpics,
   finalizeEpic
 );
@@ -19,7 +19,7 @@ const rootEpic: Epic = combineEpics(
 const epicMiddleware = createEpicMiddleware();
 
 const rootReducer = combineReducers<State, Actions>({
-  player: playerReducers,
+  account: accountReducers,
   dice: diceReducers,
 });
 

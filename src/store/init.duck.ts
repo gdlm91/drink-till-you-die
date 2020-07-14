@@ -8,7 +8,7 @@ import { Actions, Epic } from "./types";
 const initEpic: Epic = (action$) =>
   action$.pipe(
     ofType("INIT"),
-    flatMap(() => of<Actions>({ type: "PLAYER_INIT" }))
+    flatMap(() => of<Actions>({ type: "ACCOUNT_INIT" }))
   );
 
 // This can be extended to INIT_AUTH other parts of the state, just add more actions to the stream

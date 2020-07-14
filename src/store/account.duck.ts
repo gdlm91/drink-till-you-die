@@ -6,21 +6,21 @@ import { authState } from "rxfire/auth";
 
 import { db, auth, firebase } from "../db/firebase";
 import { reduceReducers } from "./utils";
-import { Actions, Epic, PlayerState, PLAYER_REGISTER } from "./types";
+import { Actions, Epic, AccountState, ACCOUNT_REGISTER } from "./types";
 import { Player } from "../types";
 
-export type PlayerReducer = Reducer<PlayerState, Actions>;
+export type AccountReducer = Reducer<AccountState, Actions>;
 
 const INITIAL_STATE = { loading: true };
 
 /** REDUCERS */
 /** -------- */
 
-const playerShowRegistrationReducer: PlayerReducer = (
+const accountShowRegistrationReducer: AccountReducer = (
   state = INITIAL_STATE,
   action
 ) => {
-  if (action.type !== "PLAYER_SHOW_REGISTRATION") {
+  if (action.type !== "ACCOUNT_SHOW_REGISTRATION") {
     return state;
   }
 
@@ -30,8 +30,11 @@ const playerShowRegistrationReducer: PlayerReducer = (
   };
 };
 
-const playerRegisterReucer: PlayerReducer = (state = INITIAL_STATE, action) => {
-  if (action.type !== "PLAYER_REGISTER") {
+const accountRegisterReucer: AccountReducer = (
+  state = INITIAL_STATE,
+  action
+) => {
+  if (action.type !== "ACCOUNT_REGISTER") {
     return state;
   }
 
@@ -41,8 +44,8 @@ const playerRegisterReucer: PlayerReducer = (state = INITIAL_STATE, action) => {
   };
 };
 
-const playerLoadReucer: PlayerReducer = (state = INITIAL_STATE, action) => {
-  if (action.type !== "PLAYER_LOAD") {
+const accountLoadReucer: AccountReducer = (state = INITIAL_STATE, action) => {
+  if (action.type !== "ACCOUNT_LOAD") {
     return state;
   }
 
@@ -56,11 +59,11 @@ const playerLoadReucer: PlayerReducer = (state = INITIAL_STATE, action) => {
   };
 };
 
-const playerUnregisterReducer: PlayerReducer = (
+const accountUnregisterReducer: AccountReducer = (
   state = INITIAL_STATE,
   action
 ) => {
-  if (action.type !== "PLAYER_UNREGISTER") {
+  if (action.type !== "ACCOUNT_UNREGISTER") {
     return state;
   }
 
@@ -75,9 +78,9 @@ const playerUnregisterReducer: PlayerReducer = (
 /** EPICS */
 /** ----- */
 
-const playerInitEpic: Epic = (action$) =>
+const accountInitEpic: Epic = (action$) =>
   action$.pipe(
-    ofType("PLAYER_INIT"),
+    ofType("ACCOUNT_INIT"),
     switchMap(() => {
       const setPersistence$ = from(
         auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
@@ -88,11 +91,11 @@ const playerInitEpic: Epic = (action$) =>
     switchMap(() => authState(auth)),
     map((user) => {
       if (!user) {
-        return { type: "PLAYER_SHOW_REGISTRATION" };
+        return { type: "ACCOUNT_SHOW_REGISTRATION" };
       }
 
       return {
-        type: "PLAYER_LOAD",
+        type: "ACCOUNT_LOAD",
         payload: {
           accountId: user.uid,
         },
@@ -100,12 +103,12 @@ const playerInitEpic: Epic = (action$) =>
     })
   );
 
-const playerLoadedEpic: Epic = (action$) =>
-  action$.pipe(ofType("PLAYER_LOAD"), mapTo({ type: "INIT_AUTH" }));
+const accountLoadedEpic: Epic = (action$) =>
+  action$.pipe(ofType("ACCOUNT_LOAD"), mapTo({ type: "INIT_AUTH" }));
 
-const playerRegisterEpic: Epic = (action$) =>
+const accountRegisterEpic: Epic = (action$) =>
   action$.pipe(
-    ofType("PLAYER_REGISTER"),
+    ofType("ACCOUNT_REGISTER"),
     switchMap((action) => {
       const signIn$ = from(auth.signInAnonymously());
 
@@ -114,9 +117,9 @@ const playerRegisterEpic: Epic = (action$) =>
     switchMap(([action, credentials]) => {
       const { user } = credentials;
       const ref = db.ref(`players/${user?.uid}`);
-      const { payload } = action as PLAYER_REGISTER;
+      const { payload } = action as ACCOUNT_REGISTER;
 
-      const savePlayerInfo$ = from(
+      const saveAccountInfo$ = from(
         ref.set({
           accountId: credentials.user?.uid,
           emoji: payload.emoji,
@@ -125,15 +128,15 @@ const playerRegisterEpic: Epic = (action$) =>
         } as Player)
       );
 
-      return savePlayerInfo$;
+      return saveAccountInfo$;
     }),
-    // __IGNORE, playerInitEpic will pick up the auth change
+    // __IGNORE, accountInitEpic will pick up the auth change
     mapTo({ type: "__IGNORE" })
   );
 
-const playerUnregisterEpic: Epic = (action$) =>
+const accountUnregisterEpic: Epic = (action$) =>
   action$.pipe(
-    ofType("PLAYER_UNREGISTER"),
+    ofType("ACCOUNT_UNREGISTER"),
     switchMap(() => {
       const user = auth.currentUser;
       const ref = db.ref(`players/${user?.uid}`);
@@ -147,17 +150,17 @@ const playerUnregisterEpic: Epic = (action$) =>
 /** EXPORTS */
 /** ------ */
 
-export const playerReducers = reduceReducers<PlayerState, Actions>(
+export const accountReducers = reduceReducers<AccountState, Actions>(
   INITIAL_STATE,
-  playerShowRegistrationReducer,
-  playerRegisterReucer,
-  playerLoadReucer,
-  playerUnregisterReducer
+  accountShowRegistrationReducer,
+  accountRegisterReucer,
+  accountLoadReucer,
+  accountUnregisterReducer
 );
 
-export const playerEpics = combineEpics(
-  playerInitEpic,
-  playerLoadedEpic,
-  playerRegisterEpic,
-  playerUnregisterEpic
+export const accountEpics = combineEpics(
+  accountInitEpic,
+  accountLoadedEpic,
+  accountRegisterEpic,
+  accountUnregisterEpic
 );

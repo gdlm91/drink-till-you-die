@@ -1,2 +1,2 @@
-export * from "./usePlayer";
+export * from "./useAccount";
 export * from "./useDice";
