@@ -69,6 +69,8 @@ $total: 72;
   border: 3px solid black;
   grid-auto-rows: 1fr;
   margin: 15px;
+  margin-top: 0;
+  margin-bottom: 0;
   color: white;
   @include grid-with-edges(4, 18);
 }

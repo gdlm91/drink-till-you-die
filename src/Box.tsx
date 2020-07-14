@@ -1,7 +1,7 @@
 import React from "react";
 import { Action, Player } from "./types";
 import Token from "./Token";
-import "./Box.css";
+import "./Box.scss";
 
 const fakePlayers: Player[] = [
   { name: "cinthia", emoji: "smiley", active: false, accountId: "fake2" },
@@ -20,7 +20,7 @@ interface Props {
 
 const Box: React.FC<Props> = ({ action }) => {
   return (
-    <>
+    <div className="container-box">
       <h1>{action.id}</h1>
       <p>{action.action}</p>
       <div className="tokens">
@@ -28,7 +28,7 @@ const Box: React.FC<Props> = ({ action }) => {
           <Token player={player} key={player.accountId} />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

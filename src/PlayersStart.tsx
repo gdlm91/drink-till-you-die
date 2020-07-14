@@ -1,7 +1,7 @@
 import React from "react";
 import { Player } from "./types";
-import "./Players.css";
 import Token from "./Token";
+import "./PlayersStart.css";
 
 const fakePlayers: Player[] = [
   { name: "cinthia", emoji: "smiley", active: false, accountId: "fake5" },
@@ -19,9 +19,9 @@ const fakePlayers: Player[] = [
 
 function Players() {
   return (
-    <div className="Players-container">
+    <div className="PlayersStar-container">
       {fakePlayers.map((player) => (
-        <div className="emoji-player" key={player.accountId}>
+        <div className="emoji-player-Start" key={player.accountId}>
           <Token player={player} />
         </div>
       ))}
