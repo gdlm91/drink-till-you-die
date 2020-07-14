@@ -119,7 +119,6 @@ const playerRegisterEpic: Epic = (action$) =>
       const savePlayerInfo$ = from(
         ref.set({
           accountId: credentials.user?.uid,
-          active: false,
           emoji: payload.emoji,
           name: payload.name,
           connected: true,

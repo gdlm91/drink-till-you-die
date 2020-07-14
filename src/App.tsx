@@ -21,8 +21,8 @@ const fakeAction: Action = {
 const fakePlayer: Player = {
   accountId: "fake1",
   name: "Lula",
-  emoji: ":crown:",
-  active: false,
+  emoji: "",
+  connected: true,
 };
 
 const App: React.FC = () => {

@@ -4,14 +4,14 @@ import Token from "./Token";
 import "./Box.scss";
 
 const fakePlayers: Player[] = [
-  { name: "cinthia", emoji: "smiley", active: false, accountId: "fake2" },
+  { name: "cinthia", emoji: "smiley", connected: true, accountId: "fake2" },
   {
     name: "Gerardo",
     emoji: "heart_eyes",
-    active: false,
+    connected: true,
     accountId: "fake3",
   },
-  { name: "Britney", emoji: ":alien:", active: true, accountId: "fake4" },
+  { name: "Britney", emoji: ":alien:", connected: true, accountId: "fake4" },
 ];
 
 interface Props {

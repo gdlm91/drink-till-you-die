@@ -11,10 +11,7 @@ interface Props {
 const Token: React.FC<Props> = ({ player }) => {
   return (
     <>
-      <div
-        title={player.name}
-        className={player.active ? "active emoji" : "emoji"}
-      >
+      <div className={player.active ? "active emoji" : "emoji"}>
         <Emoji emoji={player.emoji} size={player.active ? 55 : 40} />
       </div>
     </>

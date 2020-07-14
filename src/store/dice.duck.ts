@@ -11,7 +11,7 @@ import { of } from "rxjs";
 
 export type DiceReducer = Reducer<DiceState, Actions>;
 
-const DICE_URL = `${process.env.REACT_APP_HTTPS_FUNCTIONS}/dice`;
+const API_URL = `${process.env.REACT_APP_HTTPS_FUNCTIONS}`;
 
 const INITIAL_STATE: DiceState = {};
 
@@ -82,7 +82,7 @@ const diceInit: Epic = (action$, state$) =>
 const diceRoll: Epic = (action$) =>
   action$.pipe(
     ofType("DICE_ROLL"),
-    switchMap(() => ajax.post(`${DICE_URL}/roll`)),
+    switchMap(() => ajax.post(`${API_URL}/roll-dice`)),
     mapTo({ type: "__IGNORE" })
   );
 
