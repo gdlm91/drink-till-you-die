@@ -1,15 +1,18 @@
 import { useSelector } from "react-redux";
+
 import { State } from "../store/types";
-import { PositionsState, Player, PlayersList } from "../types";
-import { usePlayers } from "./usePlayers";
+import { Player, PlayersList } from "../types";
 
 export const usePosition = (position: number) => {
-  const { players: listOfPlayers } = usePlayers();
-
   const players = useSelector((state: State) => {
+    const { players: listOfPlayers, positions } = state;
+
+    if (!listOfPlayers || !positions) {
+      return [];
+    }
+
     return (
-      listOfPlayers &&
-      Object.entries<number>(state.positions || ({} as PositionsState))
+      Object.entries(positions)
         .filter(([accountId, pos]) => pos === position)
         .map(
           ([accountId, pos]) =>

@@ -94,7 +94,7 @@ export interface DICE_FINALIZE extends Action {
 
 //#region PLAYERS
 
-export type PlayersState = PlayersList | {} | undefined;
+export type PlayersState = PlayersList | undefined;
 
 export interface PLAYERS_INIT extends Action {
   type: "PLAYERS_INIT";
@@ -155,7 +155,7 @@ export interface CURRENT_PLAYER_FINALIZE extends Action {
 
 //#region POSITIONS
 
-export type PositionsState = _PositionsState | {} | undefined;
+export type PositionsState = _PositionsState | undefined;
 
 export interface POSITIONS_INIT extends Action {
   type: "POSITIONS_INIT";
