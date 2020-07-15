@@ -51,7 +51,7 @@ const RegistrationModal: React.FC<Props> = ({
         <Modal.Body>
           <div className="user">
             <Form.Label>Escoge usuario y ficha!</Form.Label>
-            <InputGroup className="mb-3">
+            <InputGroup className="large">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon1">
                   <Emoji emoji={emoji} size={30} />
@@ -67,9 +67,29 @@ const RegistrationModal: React.FC<Props> = ({
                 onChange={(e) => handleNameChange(e as any)}
               />
             </InputGroup>
+            <InputGroup className="small">
+              <InputGroup.Prepend>
+                <InputGroup.Text id="basic-addon1">
+                  <Emoji emoji={emoji} size={15} />
+                </InputGroup.Text>
+              </InputGroup.Prepend>
+              <Form.Control
+                required
+                disabled={loading}
+                type="text"
+                placeholder="Ingrese usuario aquí"
+                value={name}
+                onChange={(e) => handleNameChange(e as any)}
+              />
+            </InputGroup>
           </div>
           <div className="picker">
-            <Picker set="apple" emoji={emoji} onSelect={handleEmojiPick} />
+            <Picker
+              set="apple"
+              emoji={emoji}
+              onSelect={handleEmojiPick}
+              style={{ width: "100%" }}
+            />
           </div>
         </Modal.Body>
         <Modal.Footer>
