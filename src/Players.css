@@ -6,3 +6,13 @@
 .emoji-player {
   margin-left: -12px;
 }
+
+/* This query was necessary for changing the size of the elements on mobile cellphone*/
+@media only screen and (max-width: 400px) {
+  /*welcome section media query*/
+
+  .Players-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

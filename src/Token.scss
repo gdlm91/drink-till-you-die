@@ -1,0 +1,33 @@
+.Token {
+  display: inline-block;
+  border: 5px solid rgba(249, 248, 250, 0.6);
+  border-radius: 50px;
+  -webkit-box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  background-color: aliceblue;
+  margin: 2px;
+  z-index: 1;
+
+  &.active {
+    background-color: rgb(26, 161, 67);
+  }
+  .sm-emoji {
+    display: none;
+  }
+}
+
+/* This query was necessary for changing the size of the elements on mobile cellphone*/
+@media only screen and (max-width: 400px) {
+  /*welcome section media query*/
+
+  .Token {
+    .lg-emoji {
+      display: none;
+    }
+
+    .sm-emoji {
+      display: inline;
+    }
+  }
+}

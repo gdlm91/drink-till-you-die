@@ -11,3 +11,16 @@ header {
     align-items: center;
   }
 }
+
+/* This query was necessary for changing the size of the elements on mobile cellphone*/
+@media only screen and (max-width: 600px) {
+  /*welcome section media query*/
+
+  .container-button-players {
+    flex-direction: column;
+  }
+
+  .button-sign-out {
+    padding: 20px 0;
+  }
+}

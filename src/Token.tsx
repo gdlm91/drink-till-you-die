@@ -3,7 +3,7 @@ import { Player } from "./types";
 import "emoji-mart/css/emoji-mart.css";
 import { Emoji } from "emoji-mart";
 
-import "./Token.css";
+import "./Token.scss";
 import { useCurrentPlayer } from "./hooks";
 
 interface Props {
@@ -18,10 +18,15 @@ const Token: React.FC<Props> = ({ player }) => {
 
   return (
     <div
-      className={isActivePlayer ? "active emoji" : "emoji"}
+      className={isActivePlayer ? "active Token" : "Token"}
       title={player.name}
     >
-      <Emoji emoji={player.emoji} size={isActivePlayer ? 55 : 40} />
+      <span className="lg-emoji">
+        <Emoji emoji={player.emoji} size={isActivePlayer ? 55 : 40} />
+      </span>
+      <span className="sm-emoji">
+        <Emoji emoji={player.emoji} size={isActivePlayer ? 35 : 25} />
+      </span>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import "./Players.css";
 import Token from "./Token";
 import { usePlayers } from "./hooks";
+import { Player } from "./types";
 
 function Players() {
   const { players } = usePlayers();
@@ -9,7 +10,7 @@ function Players() {
   return (
     <div className="Players-container">
       {players &&
-        Object.values(players).map((player) => (
+        Object.values<Player>(players).map((player) => (
           <div className="emoji-player" key={player.accountId}>
             <Token player={player} />
           </div>
