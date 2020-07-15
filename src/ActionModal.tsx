@@ -1,31 +1,47 @@
-import React from "react";
-import Modal, { ModalProps } from "react-bootstrap/Modal";
+import React, { useState } from "react";
+import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Emoji } from "emoji-mart";
-import "./ActionModal.css";
 
+import "./ActionModal.css";
 import { Action, Player } from "./types";
 
-interface Props extends ModalProps {
-  player: Player;
-  action: Action;
-}
+const fakeAction: Action = {
+  id: 23,
+  action: "beben todos",
+  explanation: "Beben todos!",
+};
 
-const ActionModal: React.FC<Props> = (props) => {
-  const { action, player, onHide } = props;
+const fakePlayer: Player = {
+  accountId: "fake1",
+  name: "Lula",
+  emoji: ":crown:",
+  connected: true,
+};
+
+const ActionModal: React.FC = () => {
+  const [actionModalShow, setActionModal] = useState(false);
 
   return (
-    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
+    <Modal
+      show={actionModalShow}
+      onHide={() => setActionModal(false)}
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
       <Modal.Header closeButton>
         <Modal.Title className="modal-action-name">
-          <Emoji emoji={player.emoji} size={35} /> {player.name}
+          <Emoji emoji={fakePlayer.emoji} size={35} /> {fakePlayer.name}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>{action.explanation}</p>
+        <p>{fakeAction.explanation}</p>
       </Modal.Body>
       <Modal.Footer>
-        <Button className="colorful-button" onClick={onHide}>
+        <Button
+          className="colorful-button"
+          onClick={() => setActionModal(false)}
+        >
           Cerrar
         </Button>
       </Modal.Footer>

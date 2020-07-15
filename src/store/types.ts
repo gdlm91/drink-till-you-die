@@ -1,6 +1,13 @@
 import { Action } from "redux";
 import { Epic as _Epic } from "redux-observable";
-import { DiceState as _DiceState } from "../types";
+import {
+  PlayersList,
+  Player,
+  GameState as _GameState,
+  DiceState as _DiceState,
+  CurrentPlayerState as _CurrentPlayerState,
+  PositionsState as _PositionsState,
+} from "../types";
 
 //#region __UTILS
 
@@ -22,36 +29,36 @@ export interface FINALIZE extends Action {
 
 //#endregion
 
-//#region PLAYERS
+//#region ACCOUNT
 
-export interface PLAYER_INIT extends Action {
-  type: "PLAYER_INIT";
+export interface ACCOUNT_INIT extends Action {
+  type: "ACCOUNT_INIT";
 }
 
-export interface PLAYER_SHOW_REGISTRATION extends Action {
-  type: "PLAYER_SHOW_REGISTRATION";
+export interface ACCOUNT_SHOW_REGISTRATION extends Action {
+  type: "ACCOUNT_SHOW_REGISTRATION";
 }
 
-export interface PLAYER_REGISTER extends Action {
-  type: "PLAYER_REGISTER";
+export interface ACCOUNT_REGISTER extends Action {
+  type: "ACCOUNT_REGISTER";
   payload: {
     name: string;
     emoji: string;
   };
 }
 
-export interface PLAYER_LOAD extends Action {
-  type: "PLAYER_LOAD";
+export interface ACCOUNT_LOAD extends Action {
+  type: "ACCOUNT_LOAD";
   payload: {
     accountId: string;
   };
 }
 
-export interface PLAYER_UNREGISTER extends Action {
-  type: "PLAYER_UNREGISTER";
+export interface ACCOUNT_UNREGISTER extends Action {
+  type: "ACCOUNT_UNREGISTER";
 }
 
-export type PlayerState =
+export type AccountState =
   | {
       accountId?: string;
       active?: boolean;
@@ -85,27 +92,82 @@ export interface DICE_FINALIZE extends Action {
 
 //#endregion
 
-//#region FAKE
+//#region PLAYERS
 
-export type FakeState =
-  | {
-      name?: string;
-    }
-  | undefined;
+export type PlayersState = PlayersList | {} | undefined;
 
-export interface FAKE_SKIP extends Action {
-  type: "FAKE_SKIP";
+export interface PLAYERS_INIT extends Action {
+  type: "PLAYERS_INIT";
 }
 
-export interface FAKE_INIT extends Action {
-  type: "FAKE_INIT";
+export interface PLAYERS_LOADED extends Action {
+  type: "PLAYERS_LOADED";
+  payload: PlayersList;
 }
 
-export interface FAKE_LOADED extends Action {
-  type: "FAKE_LOADED";
-  payload: {
-    name: string;
-  };
+export interface PLAYERS_FINALIZE extends Action {
+  type: "PLAYERS_FINALIZE";
+}
+
+//#endregion
+
+//#region GAME
+
+export type GameState = _GameState | {} | undefined;
+
+export interface GAME_INIT extends Action {
+  type: "GAME_INIT";
+}
+
+export interface GAME_LOADED extends Action {
+  type: "GAME_LOADED";
+  payload: GameState;
+}
+
+export interface GAME_FINALIZE extends Action {
+  type: "GAME_FINALIZE";
+}
+
+//#endregion
+
+//#region CURRENT_PLAYER
+
+export type CurrentPlayerState = _CurrentPlayerState | undefined;
+
+export interface CURRENT_PLAYER_INIT extends Action {
+  type: "CURRENT_PLAYER_INIT";
+}
+
+export interface CURRENT_PLAYER_LOADED extends Action {
+  type: "CURRENT_PLAYER_LOADED";
+  payload: GameState;
+}
+
+export interface CURRENT_PLAYER_NEXT extends Action {
+  type: "CURRENT_PLAYER_NEXT";
+}
+
+export interface CURRENT_PLAYER_FINALIZE extends Action {
+  type: "CURRENT_PLAYER_FINALIZE";
+}
+
+//#endregion
+
+//#region POSITIONS
+
+export type PositionsState = _PositionsState | {} | undefined;
+
+export interface POSITIONS_INIT extends Action {
+  type: "POSITIONS_INIT";
+}
+
+export interface POSITIONS_LOADED extends Action {
+  type: "POSITIONS_LOADED";
+  payload: GameState;
+}
+
+export interface POSITIONS_FINALIZE extends Action {
+  type: "POSITIONS_FINALIZE";
 }
 
 //#endregion
@@ -113,9 +175,12 @@ export interface FAKE_LOADED extends Action {
 //#region UNION
 
 export interface State {
-  fake?: FakeState;
-  player?: PlayerState;
+  account?: AccountState;
+  players?: PlayersState;
+  game?: GameState;
   dice?: DiceState;
+  currentPlayer?: CurrentPlayerState;
+  positions?: PositionsState;
 }
 
 export type Actions =
@@ -123,18 +188,28 @@ export type Actions =
   | INIT
   | INIT_AUTH
   | FINALIZE
-  | PLAYER_INIT
-  | PLAYER_SHOW_REGISTRATION
-  | PLAYER_REGISTER
-  | PLAYER_LOAD
-  | PLAYER_UNREGISTER
+  | ACCOUNT_INIT
+  | ACCOUNT_SHOW_REGISTRATION
+  | ACCOUNT_REGISTER
+  | ACCOUNT_LOAD
+  | ACCOUNT_UNREGISTER
+  | PLAYERS_INIT
+  | PLAYERS_LOADED
+  | PLAYERS_FINALIZE
+  | GAME_INIT
+  | GAME_LOADED
+  | GAME_FINALIZE
   | DICE_INIT
   | DICE_ROLL
   | DICE_ROLLED
   | DICE_FINALIZE
-  | FAKE_SKIP
-  | FAKE_INIT
-  | FAKE_LOADED;
+  | CURRENT_PLAYER_INIT
+  | CURRENT_PLAYER_LOADED
+  | CURRENT_PLAYER_NEXT
+  | CURRENT_PLAYER_FINALIZE
+  | POSITIONS_INIT
+  | POSITIONS_LOADED
+  | POSITIONS_FINALIZE;
 
 export type Epic = _Epic<Actions, Actions, State>;
 

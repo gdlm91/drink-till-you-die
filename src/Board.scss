@@ -72,7 +72,6 @@ $total: 72;
   margin-top: 0;
   margin-bottom: 0;
   color: white;
-  @include grid-with-edges(4, 18);
 }
 
 // Hack for squared grids
@@ -123,8 +122,15 @@ $total: 72;
   background-color: #df3100;
 }
 
+/* This query was necessary for changing the size and borders only for large screens */
+@media only screen and (min-width: 900px) {
+  .Board {
+    @include grid-with-edges(4, 18);
+  }
+}
+
 /* This query was necessary for changing the size of the elements on mobile cellphone*/
-@media only screen and (max-width: 900px) {
+@media only screen and (min-width: 600px) and (max-width: 899px) {
   /*welcome section media query*/
   .Board {
     @include grid-with-edges(3, 24);
@@ -132,7 +138,7 @@ $total: 72;
 }
 
 /* This query was necessary for changing the size of the elements on mobile cellphone*/
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 599px) {
   /*welcome section media query*/
   .Board {
     @include grid-with-edges(2, 36);

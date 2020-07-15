@@ -1,0 +1,23 @@
+.BoxEnd {
+  font-family: "FunnyKid";
+  background-color: rgba(192, 211, 204, 0.342);
+  margin: 15px;
+  margin-top: 0px;
+  padding: 40px 0;
+
+  h1 {
+    margin: 0;
+    font-size: 50px;
+    text-align: center;
+  }
+
+  .players {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .emoji-player {
+    padding: 5px;
+  }
+}

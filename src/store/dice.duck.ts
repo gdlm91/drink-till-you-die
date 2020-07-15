@@ -1,5 +1,6 @@
 import { Reducer } from "redux";
 import { combineEpics, ofType } from "redux-observable";
+import { of } from "rxjs";
 import { ajax } from "rxjs/ajax";
 import { mapTo, switchMap, map, catchError } from "rxjs/operators";
 import { objectVal } from "rxfire/database";
@@ -7,11 +8,10 @@ import { objectVal } from "rxfire/database";
 import { db } from "../db/firebase";
 import { reduceReducers } from "./utils";
 import { Actions, Epic, DiceState } from "./types";
-import { of } from "rxjs";
 
 export type DiceReducer = Reducer<DiceState, Actions>;
 
-const DICE_URL = `${process.env.REACT_APP_HTTPS_FUNCTIONS}/dice`;
+const API_URL = `${process.env.REACT_APP_HTTPS_FUNCTIONS}`;
 
 const INITIAL_STATE: DiceState = {};
 
@@ -32,6 +32,15 @@ const diceRollReducer: DiceReducer = (state = INITIAL_STATE, action) => {
 const diceRolledReducer: DiceReducer = (state = INITIAL_STATE, action) => {
   if (action.type !== "DICE_ROLLED") {
     return state;
+  }
+
+  // means the game is completly empty
+  if (action.payload?.isRolling === undefined) {
+    return {
+      ...state,
+      isRolling: false,
+      value: 1,
+    };
   }
 
   return {
@@ -73,7 +82,7 @@ const diceInit: Epic = (action$, state$) =>
 const diceRoll: Epic = (action$) =>
   action$.pipe(
     ofType("DICE_ROLL"),
-    switchMap(() => ajax.post(`${DICE_URL}/roll`)),
+    switchMap(() => ajax.post(`${API_URL}/roll-dice`)),
     mapTo({ type: "__IGNORE" })
   );
 

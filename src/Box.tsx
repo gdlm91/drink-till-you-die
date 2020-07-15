@@ -1,32 +1,25 @@
 import React from "react";
-import { Action, Player } from "./types";
+import { Action } from "./types";
 import Token from "./Token";
 import "./Box.scss";
-
-const fakePlayers: Player[] = [
-  { name: "cinthia", emoji: "smiley", active: false, accountId: "fake2" },
-  {
-    name: "Gerardo",
-    emoji: "heart_eyes",
-    active: false,
-    accountId: "fake3",
-  },
-  { name: "Britney", emoji: ":alien:", active: true, accountId: "fake4" },
-];
+import { usePosition } from "./hooks";
 
 interface Props {
   action: Action;
 }
 
 const Box: React.FC<Props> = ({ action }) => {
+  const { players } = usePosition(action.id);
+
   return (
     <div className="container-box">
       <h1>{action.id}</h1>
       <p>{action.action}</p>
       <div className="tokens">
-        {fakePlayers.map((player) => (
-          <Token player={player} key={player.accountId} />
-        ))}
+        {players &&
+          players.map((player) => (
+            <Token player={player} key={player.accountId} />
+          ))}
       </div>
     </div>
   );
