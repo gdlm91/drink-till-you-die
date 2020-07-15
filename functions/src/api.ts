@@ -47,6 +47,7 @@ app.post("/roll-dice", async (req, res) => {
       setDiceState({
         isRolling: false,
         value: newValue as DiceValues,
+        rolled: true,
       });
     }, 500 * rolls);
   };
@@ -72,14 +73,17 @@ app.post("/next-player", async (req, res) => {
     return;
   }
 
+  if (!gameState.dice.rolled) {
+    res.json("The player hasn't rolled the dice yet... Git them some time");
+    return;
+  }
+
   const currentPlayerIndex = playersKeys.indexOf(playerState.accountId);
   // create a stack of players without the current player, going from the current player all the way back to it's position.
   const playersStack = [
     ...playersKeys.slice(currentPlayerIndex + 1),
     ...playersKeys.slice(0, currentPlayerIndex),
   ];
-
-  console.log(playersStack);
 
   const nextPlayerIndex = findIndex(
     playersStack,
@@ -95,6 +99,11 @@ app.post("/next-player", async (req, res) => {
   gameStateRef.update({
     currentPlayer: {
       accountId: nextPlayerId,
+      requestAction: false,
+    },
+    dice: {
+      ...gameState.dice,
+      rolled: false,
     },
   } as Partial<GameState>);
 

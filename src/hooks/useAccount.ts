@@ -1,5 +1,6 @@
 import { Dispatch } from "redux";
 import { useSelector, useDispatch } from "react-redux";
+
 import { State, ACCOUNT_REGISTER, Actions } from "../store/types";
 
 export const useAccount = () => {
