@@ -15,7 +15,7 @@ export const useCurrentPlayer = () => {
     const position = positions[currentPlayer.accountId];
     const player = players[currentPlayer.accountId];
 
-    if (!position || !player) {
+    if (position === undefined || !player) {
       return undefined;
     }
 
