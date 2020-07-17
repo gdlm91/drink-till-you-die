@@ -68,14 +68,7 @@ const Dice: React.FC<Props> = ({
     onClick && onClick();
   };
 
-  // keep internal value sync with controlled value
-  useEffect(() => {
-    if (value) {
-      _setValue(value);
-    }
-  }, [value]);
-
-  // keep internal rolling sync with controlled rolling
+  // keep internal rolling and value sync with controlled rolling
   // if rolling, will generate random numbers until external rolling is false
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -84,7 +77,11 @@ const Dice: React.FC<Props> = ({
       return;
     }
 
-    if (isRolling === false) {
+    if (isRolling === false && value) {
+      setTimeout(() => {
+        _setValue(value);
+      }); // just make sure we set the value after any trapped interval is already executed.
+
       return _setIsRolling(false);
     }
 
@@ -95,7 +92,7 @@ const Dice: React.FC<Props> = ({
     return () => {
       clearInterval(interval);
     };
-  }, [isRolling]);
+  }, [isRolling, value]);
 
   return (
     <div className="Dice">
