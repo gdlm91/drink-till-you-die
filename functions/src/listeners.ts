@@ -17,9 +17,11 @@ export const initPosition = functions.database
       await gameStateRef.set({
         currentPlayer: {
           accountId: accountId,
+          requestAction: false,
         },
         dice: {
           isRolling: false,
+          rolled: false,
           value: 1,
         },
       } as GameState);
@@ -59,33 +61,36 @@ export const nextPosition = functions.database
   .ref("/game/dice")
   .onUpdate(async (snapshot) => {
     const diceStateAfter: DiceState = snapshot.after.val();
+    const { currentPlayer, positions }: GameState =
+      (await gameStateRef.once("value")).val() || {};
 
-    // wait until it stops
-    if (diceStateAfter.isRolling) {
+    // some piece of state is missing
+    if (!currentPlayer?.accountId || !positions) {
       return;
     }
 
-    const gameState: GameState | null = (
-      await gameStateRef.once("value")
-    ).val();
-
-    if (!gameState) {
+    // wait until it stops, or that the user actually rolls
+    if (diceStateAfter.isRolling || !diceStateAfter.rolled) {
       return;
     }
 
-    if (!gameState.currentPlayer.accountId) {
-      return;
-    }
-
-    const { accountId } = gameState.currentPlayer;
-    const currentPosition =
-      gameState?.positions[gameState.currentPlayer.accountId];
+    const { accountId } = currentPlayer;
     const { value: nextCount } = diceStateAfter;
+    const currentPosition = positions[accountId];
+
+    // some piece of state is missing
+    if (currentPosition === undefined) {
+      return;
+    }
 
     gameStateRef.update({
       positions: {
-        ...gameState?.positions,
+        ...positions,
         [accountId]: getNextPosition(currentPosition, nextCount as DiceValues),
+      },
+      currentPlayer: {
+        ...currentPlayer,
+        requestAction: true,
       },
     } as Partial<GameState>);
   });

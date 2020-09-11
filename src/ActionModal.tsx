@@ -1,52 +1,40 @@
-import React, { useState } from "react";
+import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Emoji } from "emoji-mart";
 
 import "./ActionModal.css";
-import { Action, Player } from "./types";
-
-const fakeAction: Action = {
-  id: 23,
-  action: "beben todos",
-  explanation: "Beben todos!",
-};
-
-const fakePlayer: Player = {
-  accountId: "fake1",
-  name: "Lula",
-  emoji: ":crown:",
-  connected: true,
-};
+import { useCurrentPlayer } from "./hooks";
+import { actions } from "./actions";
 
 const ActionModal: React.FC = () => {
-  const [actionModalShow, setActionModal] = useState(false);
+  const { currentPlayer, nextPlayer } = useCurrentPlayer();
+  const currentAction =
+    currentPlayer && currentPlayer?.position > -1
+      ? actions[currentPlayer.position - 1]
+      : undefined;
 
-  return (
+  return currentAction && currentPlayer ? (
     <Modal
-      show={actionModalShow}
-      onHide={() => setActionModal(false)}
-      aria-labelledby="contained-modal-title-vcenter"
+      show={currentPlayer?.requestAction}
+      aria-labelledby="Action required"
       centered
     >
       <Modal.Header closeButton>
         <Modal.Title className="modal-action-name">
-          <Emoji emoji={fakePlayer.emoji} size={35} /> {fakePlayer.name}
+          <Emoji emoji={currentPlayer.emoji} size={35} /> {currentPlayer.name}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>{fakeAction.explanation}</p>
+        <p>{currentAction.explanation}</p>
       </Modal.Body>
       <Modal.Footer>
-        <Button
-          className="colorful-button"
-          onClick={() => setActionModal(false)}
-        >
-          Cerrar
+        <Button className="colorful-button" onClick={nextPlayer}>
+          Listo! Siguiente jugador.
         </Button>
       </Modal.Footer>
     </Modal>
-  );
+  ) : null;
 };
 
 export default ActionModal;
