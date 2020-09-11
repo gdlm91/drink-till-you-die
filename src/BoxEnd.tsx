@@ -12,7 +12,7 @@ const BoxEnd: React.FC = () => {
     <div className="BoxEnd">
       {" "}
       <h1>
-        Ganaste!!!{" "}
+        Won!!!!{" "}
         <span role="img" aria-label="beer icon">
           🍻
         </span>

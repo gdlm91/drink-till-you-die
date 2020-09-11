@@ -43,13 +43,11 @@ const RegistrationModal: React.FC = () => {
     >
       <Form onSubmit={handleOnSubmit}>
         <Modal.Header>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Bienvenido!
-          </Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">Welcome!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="user">
-            <Form.Label>Escoge usuario y ficha!</Form.Label>
+            <Form.Label>Choose a user and avatar</Form.Label>
             <InputGroup className="large">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon1">
@@ -93,7 +91,7 @@ const RegistrationModal: React.FC = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button className="colorful-button" type="submit" disabled={loading}>
-            Guardar
+            Save
           </Button>
         </Modal.Footer>
       </Form>
