@@ -2,337 +2,347 @@ import { Action } from "./types";
 
 const partialActions: Omit<Action, "id">[] = [
   {
-    action: "Toman todos!",
-    explanation: "No necesita mucha explicación, a tomar todos! Salud!🍺",
-  },
-  {
-    action: "Toman los hombres!",
-    explanation: "Es momento de brillar chicos 🧑🍺",
-  },
-  {
-    action: "Yo nunca",
+    action: "Everyone drinks!",
     explanation:
-      "El  jugador debe decir Yo nunca…🤷‍♀️‍ y luego decir algo que nunca haya hecho, toman aquellos jugadores que lo hayan hecho 💁‍♂️",
+      "this doesn't need too much explanation, everyone should drink!!🍺",
   },
   {
-    action: "Toma el más pequeño!",
-    explanation: "Toma el más joven de los jugadores 👶",
+    action: "Men drink!!",
+    explanation: "Guys, it's your time to shine🧑🍺",
   },
   {
-    action: "Cultura Chupistica",
+    action: "I have never ever",
     explanation:
-      "Escoge una categoría que se te ocurra(Ej: Marcas de cigarrillos 🚬, series de televisión 📺, etc) y nombra un elemento de este. Los jugadores deben nombran otros",
+      "The player must say I never… 🤷‍♀️‍ and then say something that they have never done, take those players who have done it 💁‍♂️",
   },
   {
-    action: "Crea una regla",
-    explanation:
-      "Crea una regla 😈 que deba ser cumplida por todos los jugadores (tú incluido), que se mantendrá por todo el juego (la regla puede ser eliminada por alguien que caiga en esta casilla). ",
+    action: "The youngest person have to drink!!",
+    explanation: "The baby of the group should drink! 👶",
   },
   {
-    action: "Chiste",
+    action: "Drinking culture",
     explanation:
-      "Cuenta un chiste 😂 lo suficientemente divertido que haga que los demas se rian, los que rian tomaran 🍷 ",
+      "Choose a category that comes to mind (Ex: Cigarette brands 🚬, television series 📺, etc) and name an element of it. Players must name others",
+  },
+  {
+    action: "Create a rule!",
+    explanation:
+      "Create a rule 😈 that must be followed by all players (including you), which will be maintained throughout the game (the rule can be removed by someone who lands on this box).",
+  },
+  {
+    action: "Joke!",
+    explanation:
+      "Tell a joke 😂 funny enough that it makes others laugh, those who laugh will drink 🍷",
   },
   {
     action: "Karaoke",
     explanation:
-      "Elije una canción de tu gusto la cual sepas la letra y cantala 🎙, los jugadores que no canten la letra 🎼 deberan tomar 1 sorbo. La canción pára una ves que el jugador lo estime conveniente o todos ya hayan perdido. Si el jugador que elijio la canción no se sabe la canción y en partes tararea o tan solo no canta, debera pagar con 3 sorbos 🥃",
+      "Choose a song of your liking which you know the lyrics and sing it 🎙, players who do not sing the lyrics 🎼 should take 1 sip. The song for once the player deems it appropriate or everyone has already lost. If the player who chose the song does not know the song and hums in parts or only does not sing, he must pay with 3 sips 🥃",
   },
   {
-    action: "Subasta",
+    action: "Auction",
     explanation:
-      "Elije una categoria de tu gusto(Ej: Marcas de autos, Marcas de cerveza, etc) ofrece la cantidad de elementos de esa categoria que creas que tu puedes nombrar 🔢, cualquier jugador puede ofrecer más que tu, y asi cada uno puede subir la apuesta. Cuando se estime que ya no habran mas ofertas se cierra la subasta y el jugador ofrecio más 💲, debera nombrar la cantidad de elementos de esa categoria la cual el ofrecio, si este las nombra podra regalar esa cantidad de sorbos o distribuirlos entre los jugadores, pero si el jugador no nombra la cantidad que ofrecio este debera tomarse esa cantidad",
+      "Choose a category of your liking (Ex: Car brands, Beer brands, etc) offers the amount of elements of that category that you think you can name 🔢, any player can offer more than you, and so each one can upload the bet. When it is estimated that there will be no more offers, the auction is closed and the player offered more 💲, he must name the number of elements of that category which he offered, if he names them, he can give that amount of sips or distribute them among the players, but if the player does not name the amount he offered, he should take that amount",
   },
   {
-    action: "Fantasma",
+    action: "Ghost",
     explanation:
-      "Ninguno de los jugadores te puede nombrar 🧙‍♀️, el jugador que te nombre deberá pagar con un 🍶. Esto dura hasta que otro jugador caiga en una casilla fantasma y obtenga este beneficio",
+      "None of the players can name you 🧙‍♀️, the player who names you must pay with a 🍶. This lasts until another player lands on a ghost square and gains this buff",
   },
   {
-    action: "¿Esto o Esto?",
+    action: "Would you rather?",
     explanation:
-      "Preguntas que prefieres, Ej: Coca-cola o Pepsi, los que contesten erradamente toman 🍹",
+      "Questions you prefer, Ex: Coca-Cola or Pepsi, those who answer wrongly drink 🍹",
   },
   {
-    action: "Toman las Mujeres!",
-    explanation: "Es momento de brillar chicas 👸🍺",
+    action: "Women drink!",
+    explanation: "Girls, it's your time to shine!",
   },
   {
-    action: "Toma el mas grande",
-    explanation: "Toma el más viejo de los jugadores 👵🏻",
+    action: "The oldest person should drink!",
+    explanation: "The oldest person in the group has to drink! 👵🏻",
   },
   {
     action: "Android",
-    explanation: "Toma los android lovers! 🥰🥰",
+    explanation: "Drink for android lovers! 🥰🥰",
   },
   {
     action: "Iphone",
-    explanation: "Toma los Iphone📱 lovers! 🥰🥰",
+    explanation: "Drink for iPhone lovers! 🥰🥰",
   },
   {
-    action: "Impar",
-    explanation: "Todos lo que hayan nacido en un año impar toman! 😆",
-  },
-  {
-    action: "Hermanos",
-    explanation: "Toman los que tengan hermanos 👨‍👨‍👧‍👧",
-  },
-  {
-    action: "Zona cultural",
+    action: "Odd",
     explanation:
-      "Haz una pregunta, que tenga varias respuestas quien no sepa la respuesta a la pregunta toma 🙋🏻‍♀️",
+      "All the players who were born in a odd year have to drink!.😆",
   },
   {
-    action: "Par",
-    explanation: "Toman los que jugadores que tenga años pares! 🎯",
+    action: "Siblings!",
+    explanation: "All the players who has siblings should drink!👨‍👨‍👧‍👧",
   },
   {
-    action: "Silbar",
+    action: "Culture zone",
     explanation:
-      "Tiene que aguantar todo un turno silbando, si no lo logra, toma 🥤",
+      "Ask a question, which has several answers who do not know the answer to the question should drink! 🙋🏻‍♀️",
   },
   {
-    action: "Compartir",
-    explanation: "Reparte el número de tragos 🥃, del numero del dado 🎲",
-  },
-  {
-    action: "Solteros",
-    explanation: "Toman los solteros! 💁🏾‍♀️",
-  },
-  {
-    action: "Tú y?",
-    explanation: "Tomas tú y otra persona que elijas 👩🏿‍🤝‍🧑🏿",
-  },
-  {
-    action: "Verdad o reto",
+    action: "Pair",
     explanation:
-      "Escoge a cualquier jugador y preguntale verdad o reto? 🤜🏾 Si no cumple o no hace el reto, debe tomar un trago 🍸",
+      "All the players who were born in a pair year have to drink!🎯",
   },
   {
-    action: "No me juzguen pero...",
+    action: "Whistle",
     explanation:
-      "El jugador en esta casilla, debe decir algo de lo cual no se siente tan orgullosos 🙍🏿‍♂️, toman un sorbo 🍹todos aquellos que lo juzguen",
+      "The person has to whistler during all the turn, if the person won't make it, he must drink! 🥤",
   },
   {
-    action: "Historia",
+    action: "Share",
     explanation:
-      "El jugador en turno, debe contar una historia vergonzante 🤦‍♀️(debe ser verdad), si todos consideran que es realmente humillante, toman sino, debes tomar tu 3 sorbos 🍺, por contar una historia tan mala 🙄",
+      "Distribute the number of drinks 🥃, taking the number from the die 🎲",
   },
   {
-    action: "Numero de parejas",
+    action: "Singles!",
+    explanation: "All the singles in the game have to drink 💁🏾‍♀️",
+  },
+  {
+    action: "You and ?",
     explanation:
-      "Los jugadores deberán tomar 🍻 la cantidad de personas con las que han salido 👩🏻‍🤝‍🧑🏼",
+      "You and another person that you choose have to drink! 👩🏿‍🤝‍🧑🏿",
   },
   {
-    action: "Piedra papel o tijeras",
+    action: "truth or dare!",
     explanation:
-      "Escoge cualquier jugador de la mesa y desafialo 🗡a piedra papel o tijera, el que pierda debe tomar 🖐🏼👊🏼🖖🏼",
+      "Choose any player and ask him truth or dare? 🤜🏾 If you do not meet or do not do the challenge, you must have a drink 🍸",
   },
   {
-    action: "El mas largo",
+    action: "Don't judge me but...",
     explanation:
-      "El jugador con el nombre más largo toma 👩🏼‍🦳, deberán sumar todos sus nombres y apellidos el número más alto gana!!!➕ ",
+      "The player in this box, must say something of which he is not so proud 🙍🏿‍♂️, take a sip 🍹 all those who judge him",
   },
   {
-    action: "Descripción",
+    action: "Story",
     explanation:
-      "El jugador en turno, deberá escoger una personalidad famosa 😎 y describirla, el primer jugador que lo descubra gana, el resto de los perdedores toma un trago 🍺",
+      "The player, in turn, must tell a shameful story 🤦‍♀️ (it must be true), if everyone considers that it is really humiliating, must drink! if not, you must take your 3 sips 🍺, for telling such a bad story 🙄",
   },
   {
-    action: "Mudo",
+    action: "Numbers of lovers!",
     explanation:
-      "El jugador en esta casilla deberá permanecer callado 🤐 hasta que finalice el turno, cada vez que hable 😯, deberá tomar un trago 🍹",
+      "Players must drink 🍻 the number of people they have dated 👩🏻‍🤝‍🧑🏼",
   },
   {
-    action: "El juego del alfabeto",
+    action: "Rock paper or scissors",
     explanation:
-      "El jugador en turno comienza escogiendo una categoría (Ejm: Películas 🎬) y nombrando algo de esa categoría que empiece con la letra A. El jugador actual 😋 decide quien es la siguiente persona y debe decir algo de esa categoría ahora con la letra B y así sucesivamente hasta que haya un perdedor 😪. Ejemplo Películas (Avatar, Believe, Casablanca, Diamante de sangre etc)",
+      "Choose any player at the table and challenge 🗡 to rock paper or scissors, whoever loses must drink! 🖐🏼👊🏼🖖🏼",
   },
   {
-    action: "¿Quien soy?",
+    action: "The longest",
     explanation:
-      "El jugador actual, deberá pensar en una alguien famoso 👑, y los otros jugadores deben adivinar quién es ❓, haciendo preguntas de si o no, y el jugador actual deberá responderlas, hasta que alguien adivine 🙋🏼‍♀️. Toman un trago los perdedores.  ",
+      "The player with the longest name must drink! 👩🏼‍🦳, add all their names and surnames the highest number wins !!! ➕",
   },
   {
-    action: "Sigue la historia",
+    action: "Description!",
     explanation:
-      "Junto con los demás jugadores deberán crear una historia coherente 🧾, la cual será formada con 1 o 2 palabras, como prefiera el jugador, por jugador. Al momento de que a un jugador le toque continuar la historia, si este se demora mucho, lo que provoca que se pierda la continuidad, queda automáticamente como perdedor 😫, y deberá tomar 1 sorbo 🥃",
+      "The player in turn must choose a famous personality 😎 and describe it, the first player to discover it wins, the rest of the losers have a drink 🍺",
   },
   {
-    action: "Toman todos!",
-    explanation: "No necesita mucha explicación, a tomar todos! Salud!🍺",
-  },
-  {
-    action: "Yo nunca",
+    action: "Mute",
     explanation:
-      "El  jugador debe decir Yo nunca…🤷‍♀️‍ y luego decir algo que nunca haya hecho, toman aquellos jugadores que lo hayan hecho 💁‍♂️",
+      "The player in this box must remain silent 🤐 until the end of the turn, each time he speaks 😯, he must take a drink 🍹",
   },
   {
-    action: "Cultura Chupistica",
+    action: "The alphabet game",
     explanation:
-      "Escoge una categoría que se te ocurra(Ej: Marcas de cigarrillos 🚬, series de televisión 📺, etc) y nombra un elemento de este. Los jugadores deben nombran otros",
+      "The player in turn begins by choosing a category (Eg: Movies 🎬) and naming something from that category that begins with the letter A. The current player 😋 decides who the next person is and must say something from that category now with the letter B and so on until there is a loser 😪. Example Movies (Avatar, Believe, Casablanca, Blood Diamond etc)",
   },
   {
-    action: "Chiste",
+    action: "Who am I?",
     explanation:
-      "Cuenta un chiste 😂 lo suficientemente divertido que haga que los demas se rian, los que rian tomaran 🍷 ",
+      "The current player must think of a famous someone 👑, and the other players must guess who it is ❓, asking yes or no questions, and the current player must answer them, until someone guesses 🙋🏼‍♀️. Losers have a drink.",
   },
   {
-    action: "Subasta",
+    action: "Follow the story",
     explanation:
-      "Elije una categoria de tu gusto(Ej: Marcas de autos, Marcas de cerveza, etc) ofrece la cantidad de elementos de esa categoria que creas que tu puedes nombrar 🔢, cualquier jugador puede ofrecer más que tu, y asi cada uno puede subir la apuesta. Cuando se estime que ya no habran mas ofertas se cierra la subasta y el jugador ofrecio más 💲, debera nombrar la cantidad de elementos de esa categoria la cual el ofrecio, si este las nombra podra regalar esa cantidad de sorbos o distribuirlos entre los jugadores, pero si el jugador no nombra la cantidad que ofrecio este debera tomarse esa cantidad",
+      "Together with the other players, they must create a coherent story 🧾, which will be made up of 1 or 2 words, as the player prefers, per player. As soon as a player has to continue the story, if it takes too long, which causes continuity to be lost, he or she is automatically a loser 😫, and must take 1 sip 🥃",
   },
   {
-    action: "¿Historia Real?",
+    action: "Everyone drinks!",
     explanation:
-      "Cuenta una anécdota de tu vida, cuando acabes los demás jugadores deberán decidir si era verdadera o una mentira, cuando todos contestado, se dirá si era real o no. Tomarán 1 sorbo los que se equivoquen 🍸",
+      "this doesn't need too much explanation, everyone should drink!!🍺",
   },
   {
-    action: "Toma el mas grande",
-    explanation: "Toma el más viejo de los jugadores 👵🏻",
+    action: "I have never ever",
+    explanation:
+      "The player must say I never… 🤷‍♀️‍ and then say something that they have never done, take those players who have done it 💁‍♂️",
+  },
+  {
+    action: "Drinking culture",
+    explanation:
+      "Choose a category that comes to mind (Ex: Cigarette brands 🚬, television series 📺, etc) and name an element of it. Players must name others",
+  },
+  {
+    action: "Joke!",
+    explanation:
+      "Tell a joke 😂 funny enough that it makes others laugh, those who laugh will drink 🍷",
+  },
+  {
+    action: "Auction",
+    explanation:
+      "Choose a category of your liking (Ex: Car brands, Beer brands, etc) offers the amount of elements of that category that you think you can name 🔢, any player can offer more than you, and so each one can upload the bet. When it is estimated that there will be no more offers, the auction is closed and the player offered more 💲, he must name the number of elements of that category which he offered, if he names them, he can give that amount of sips or distribute them among the players, but if the player does not name the amount he offered, he should take that amount",
+  },
+  {
+    action: "Is it a real story?",
+    explanation:
+      "Tell an anecdote of your life, when you finish the other players will have to decide if it was true or a lie, when all answered, it will be said if it was real or not. Those who make a mistake will take 1 sip 🍸",
+  },
+  {
+    action: "The oldest person should drink!",
+    explanation: "The oldest person in the group has to drink! 👵🏻",
   },
   {
     action: "Iphone",
-    explanation: "Toma los Iphone📱 lovers! 🥰🥰",
+    explanation: "Drink for iPhone lovers! 🥰🥰",
   },
   {
-    action: "Hermanos",
-    explanation: "Toman los que tengan hermanos 👨‍👨‍👧‍👧",
+    action: "Siblings!",
+    explanation: "All the players who has siblings should drink!👨‍👨‍👧‍👧",
   },
   {
-    action: "Par",
-    explanation: "Toman los que jugadores que tenga años pares! 🎯",
-  },
-  {
-    action: "Compartir",
-    explanation: "Reparte el número de tragos 🥃, del numero del dado 🎲",
-  },
-  {
-    action: "Tú y?",
-    explanation: "Tomas tú y otra persona que elijas 👩🏿‍🤝‍🧑🏿",
-  },
-  {
-    action: "Historia",
+    action: "Pair",
     explanation:
-      "El jugador en turno, debe contar una historia vergonzante 🤦‍♀️(debe ser verdad), si todos consideran que es realmente humillante, toman sino, debes tomar tu 3 sorbos 🍺, por contar una historia tan mala 🙄",
+      "All the players who were born in a pair year have to drink!🎯",
   },
   {
-    action: "El mas largo",
+    action: "Share",
     explanation:
-      "El jugador con el nombre más largo toma 👩🏼‍🦳, deberán sumar todos sus nombres y apellidos el número más alto gana!!!➕ ",
+      "Distribute the number of drinks 🥃, taking the number from the die 🎲",
   },
   {
-    action: "Mudo",
+    action: "You and ?",
     explanation:
-      "El jugador en esta casilla deberá permanecer callado 🤐 hasta que finalice el turno, cada vez que hable 😯, deberá tomar un trago 🍹",
+      "You and another person that you choose have to drink! 👩🏿‍🤝‍🧑🏿",
   },
   {
-    action: "¿Quien soy?",
+    action: "Story",
     explanation:
-      "El jugador actual, deberá pensar en una alguien famoso 👑, y los otros jugadores deben adivinar quién es ❓, haciendo preguntas de si o no, y el jugador actual deberá responderlas, hasta que alguien adivine 🙋🏼‍♀️. Toman un trago los perdedores.  ",
+      "The player, in turn, must tell a shameful story 🤦‍♀️ (it must be true), if everyone considers that it is really humiliating, must drink! if not, you must take your 3 sips 🍺, for telling such a bad story 🙄",
   },
   {
-    action: "Toman los hombres!",
-    explanation: "Es momento de brillar chicos 🧑🍺",
-  },
-  {
-    action: "Toma el más pequeño!",
-    explanation: "Toma el más joven de los jugadores 👶",
-  },
-  {
-    action: "Crea una regla",
+    action: "The longest",
     explanation:
-      "Crea una regla 😈 que deba ser cumplida por todos los jugadores (tú incluido), que se mantendrá por todo el juego (la regla puede ser eliminada por alguien que caiga en esta casilla). ",
+      "The player with the longest name must drink! 👩🏼‍🦳, add all their names and surnames the highest number wins !!! ➕",
+  },
+  {
+    action: "Mute",
+    explanation:
+      "The player in this box must remain silent 🤐 until the end of the turn, each time he speaks 😯, he must take a drink 🍹",
+  },
+  {
+    action: "Who am I?",
+    explanation:
+      "The current player must think of a famous someone 👑, and the other players must guess who it is ❓, asking yes or no questions, and the current player must answer them, until someone guesses 🙋🏼‍♀️. Losers have a drink.",
+  },
+  {
+    action: "Men drink!!",
+    explanation: "Guys, it's your time to shine🧑🍺",
+  },
+  {
+    action: "The youngest person have to drink!!",
+    explanation: "The baby of the group should drink! 👶",
+  },
+  {
+    action: "Create a rule!",
+    explanation:
+      "Create a rule 😈 that must be followed by all players (including you), which will be maintained throughout the game (the rule can be removed by someone who lands on this box).",
   },
   {
     action: "Karaoke",
     explanation:
-      "Elije una canción de tu gusto la cual sepas la letra y cantala 🎙, los jugadores que no canten la letra 🎼 deberan tomar 1 sorbo. La canción pára una ves que el jugador lo estime conveniente o todos ya hayan perdido. Si el jugador que elijio la canción no se sabe la canción y en partes tararea o tan solo no canta, debera pagar con 3 sorbos 🥃",
+      "Choose a song of your liking which you know the lyrics and sing it 🎙, players who do not sing the lyrics 🎼 should take 1 sip. The song for once the player deems it appropriate or everyone has already lost. If the player who chose the song does not know the song and hums in parts or only does not sing, he must pay with 3 sips 🥃",
   },
   {
-    action: "Fantasma",
+    action: "Ghost",
     explanation:
-      "Ninguno de los jugadores te puede nombrar 🧙‍♀️, el jugador que te nombre deberá pagar con un 🍶. Esto dura hasta que otro jugador caiga en una casilla fantasma y obtenga este beneficio",
+      "None of the players can name you 🧙‍♀️, the player who names you must pay with a 🍶. This lasts until another player lands on a ghost square and gains this buff",
   },
   {
-    action: "Toman las Mujeres!",
-    explanation: "Es momento de brillar chicas 👸🍺",
+    action: "Women drink!",
+    explanation: "Girls, it's your time to shine!",
   },
   {
     action: "Android",
-    explanation: "Toma los android lovers! 🥰🥰",
+    explanation: "Drink for android lovers! 🥰🥰",
   },
   {
-    action: "Impar",
-    explanation: "Todos lo que hayan nacido en un año impar toman! 😆",
-  },
-  {
-    action: "Zona cultural",
+    action: "Odd",
     explanation:
-      "Haz una pregunta, que tenga varias respuestas quien no sepa la respuesta a la pregunta toma 🙋🏻‍♀️",
+      "All the players who were born in a odd year have to drink!.😆",
   },
   {
-    action: "Silbar",
+    action: "Culture zone",
     explanation:
-      "Tiene que aguantar todo un turno silbando, si no lo logra, toma 🥤",
+      "Ask a question, which has several answers who do not know the answer to the question should drink! 🙋🏻‍♀️",
   },
   {
-    action: "Solteros",
-    explanation: "Toman los solteros! 💁🏾‍♀️",
-  },
-  {
-    action: "Verdad o reto",
+    action: "Whistle",
     explanation:
-      "Escoge a cualquier jugador y preguntale verdad o reto? 🤜🏾 Si no cumple o no hace el reto, debe tomar un trago 🍸",
+      "The person has to whistler during all the turn, if the person won't make it, he must drink! 🥤",
   },
   {
-    action: "Historia",
+    action: "Singles!",
+    explanation: "All the singles in the game have to drink 💁🏾‍♀️",
+  },
+  {
+    action: "truth or dare!",
     explanation:
-      "El jugador en turno, debe contar una historia vergonzante 🤦‍♀️(debe ser verdad), si todos consideran que es realmente humillante, toman sino, debes tomar tu 3 sorbos 🍺, por contar una historia tan mala 🙄",
+      "Choose any player and ask him truth or dare? 🤜🏾 If you do not meet or do not do the challenge, you must have a drink 🍸",
   },
   {
-    action: "Piedra papel o tijeras",
+    action: "Story",
     explanation:
-      "Escoge cualquier jugador de la mesa y desafialo 🗡a piedra papel o tijera, el que pierda debe tomar 🖐🏼👊🏼🖖🏼",
+      "The player, in turn, must tell a shameful story 🤦‍♀️ (it must be true), if everyone considers that it is really humiliating, must drink! if not, you must take your 3 sips 🍺, for telling such a bad story 🙄",
   },
   {
-    action: "Descripción",
+    action: "Rock paper or scissors",
     explanation:
-      "El jugador en turno, deberá escoger una personalidad famosa 😎 y describirla, el primer jugador que lo descubra gana, el resto de los perdedores toma un trago 🍺",
+      "Choose any player at the table and challenge 🗡 to rock paper or scissors, whoever loses must drink! 🖐🏼👊🏼🖖🏼",
   },
   {
-    action: "Yo nunca",
+    action: "Description!",
     explanation:
-      "El  jugador debe decir Yo nunca…🤷‍♀️‍ y luego decir algo que nunca haya hecho, toman aquellos jugadores que lo hayan hecho 💁‍♂️",
+      "The player in turn must choose a famous personality 😎 and describe it, the first player to discover it wins, the rest of the losers have a drink 🍺",
   },
   {
-    action: "Cultura Chupistica",
+    action: "I have never ever",
     explanation:
-      "Escoge una categoría que se te ocurra(Ej: Marcas de cigarrillos 🚬, series de televisión 📺, etc) y nombra un elemento de este. Los jugadores deben nombran otros",
+      "The player must say I never… 🤷‍♀️‍ and then say something that they have never done, take those players who have done it 💁‍♂️",
   },
   {
-    action: "Chiste",
+    action: "Drinking culture",
     explanation:
-      "Cuenta un chiste 😂 lo suficientemente divertido que haga que los demas se rian, los que rian tomaran 🍷 ",
+      "Choose a category that comes to mind (Ex: Cigarette brands 🚬, television series 📺, etc) and name an element of it. Players must name others",
   },
   {
-    action: "Subasta",
+    action: "Joke!",
     explanation:
-      "Elije una categoria de tu gusto(Ej: Marcas de autos, Marcas de cerveza, etc) ofrece la cantidad de elementos de esa categoria que creas que tu puedes nombrar 🔢, cualquier jugador puede ofrecer más que tu, y asi cada uno puede subir la apuesta. Cuando se estime que ya no habran mas ofertas se cierra la subasta y el jugador ofrecio más 💲, debera nombrar la cantidad de elementos de esa categoria la cual el ofrecio, si este las nombra podra regalar esa cantidad de sorbos o distribuirlos entre los jugadores, pero si el jugador no nombra la cantidad que ofrecio este debera tomarse esa cantidad",
+      "Tell a joke 😂 funny enough that it makes others laugh, those who laugh will drink 🍷",
   },
   {
-    action: "¿Historia Real?",
+    action: "Auction",
     explanation:
-      "Cuenta una anécdota de tu vida, cuando acabes los demás jugadores deberán decidir si era verdadera o una mentira, cuando todos contestado, se dirá si era real o no. Tomarán 1 sorbo los que se equivoquen 🍸",
+      "Choose a category of your liking (Ex: Car brands, Beer brands, etc) offers the amount of elements of that category that you think you can name 🔢, any player can offer more than you, and so each one can upload the bet. When it is estimated that there will be no more offers, the auction is closed and the player offered more 💲, he must name the number of elements of that category which he offered, if he names them, he can give that amount of sips or distribute them among the players, but if the player does not name the amount he offered, he should take that amount",
   },
   {
-    action: "Mudo",
+    action: "Is it a real story?",
     explanation:
-      "El jugador en esta casilla deberá permanecer callado 🤐 hasta que finalice el turno, cada vez que hable 😯, deberá tomar un trago 🍹",
+      "Tell an anecdote of your life, when you finish the other players will have to decide if it was true or a lie, when all answered, it will be said if it was real or not. Those who make a mistake will take 1 sip 🍸",
   },
   {
-    action: "Zona libre",
-    explanation: "Ya casi ganas! un trago para festejar!! 🍷🍸🍹🍶🍺🥃〽",
+    action: "Mute",
+    explanation:
+      "The player in this box must remain silent 🤐 until the end of the turn, each time he speaks 😯, he must take a drink 🍹",
+  },
+  {
+    action: "Free zone",
+    explanation: "You almost won! a drink to celebrate !!🍷🍸🍹🍶🍺🥃〽",
   },
 ];
 
