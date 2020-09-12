@@ -1,14 +1,15 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt, faUndo } from "@fortawesome/free-solid-svg-icons";
 
 import "./Header.scss";
-import { useAccount } from "./hooks";
+import { useAccount, useGame } from "./hooks";
 import Players from "./Players";
 
 const Header: React.FC = () => {
   const { account, unregister } = useAccount();
+  const { resetGame } = useGame();
 
   return (
     <header>
@@ -16,16 +17,27 @@ const Header: React.FC = () => {
         <div className="players-options">
           <Players />
         </div>
-        <div className="button-sign-out">
+        <div className="buttons">
           {account?.accountId && (
-            <Button
-              variant="outline-danger"
-              size="lg"
-              onClick={unregister}
-              disabled={account.loading}
-            >
-              <FontAwesomeIcon icon={faSignOutAlt} />
-            </Button>
+            <>
+              <Button
+                variant="outline-warning"
+                size="lg"
+                onClick={resetGame}
+                disabled={account.loading}
+                title="Reset the game"
+              >
+                <FontAwesomeIcon icon={faUndo} />
+              </Button>
+              <Button
+                variant="outline-danger"
+                size="lg"
+                onClick={unregister}
+                disabled={account.loading}
+              >
+                <FontAwesomeIcon icon={faSignOutAlt} />
+              </Button>
+            </>
           )}
         </div>
       </div>

@@ -10,6 +10,10 @@ header {
     display: flex;
     align-items: center;
   }
+
+  .buttons > * {
+    margin: 0px 10px;
+  }
 }
 
 /* This query was necessary for changing the size of the elements on mobile cellphone*/
@@ -20,7 +24,7 @@ header {
     flex-direction: column;
   }
 
-  .button-sign-out {
+  .buttons {
     padding: 20px 0;
   }
 }

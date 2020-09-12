@@ -110,6 +110,15 @@ app.post("/next-player", async (req, res) => {
   res.json({ message: "Calling next player." });
 });
 
-app.post("/skip-player", async () => {});
+app.post("/reset-game", async (req, res) => {
+  const playersRef = admin.database().ref("/players");
+  const players: PlayersList = (await playersRef.once("value")).val();
+
+  await playersRef.remove();
+  await gameStateRef.remove();
+  await admin.auth().deleteUsers(Object.keys(players));
+
+  res.json({ message: "Game resert." });
+});
 
 export const api = functions.https.onRequest(app);

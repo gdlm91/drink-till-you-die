@@ -128,6 +128,10 @@ export interface GAME_FINALIZE extends Action {
   type: "GAME_FINALIZE";
 }
 
+export interface GAME_RESET extends Action {
+  type: "GAME_RESET";
+}
+
 //#endregion
 
 //#region CURRENT_PLAYER
@@ -199,6 +203,7 @@ export type Actions =
   | GAME_INIT
   | GAME_LOADED
   | GAME_FINALIZE
+  | GAME_RESET
   | DICE_INIT
   | DICE_ROLL
   | DICE_ROLLED

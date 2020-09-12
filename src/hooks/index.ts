@@ -3,3 +3,4 @@ export * from "./usePlayers";
 export * from "./useDice";
 export * from "./useCurrentPlayer";
 export * from "./usePosition";
+export * from "./useGame";

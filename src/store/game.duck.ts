@@ -1,7 +1,8 @@
 import { Reducer } from "redux";
 import { combineEpics, ofType } from "redux-observable";
 import { of } from "rxjs";
-import { switchMap, map, catchError } from "rxjs/operators";
+import { switchMap, map, catchError, mapTo } from "rxjs/operators";
+import { ajax } from "rxjs/ajax";
 import { objectVal } from "rxfire/database";
 
 import { db } from "../db/firebase";
@@ -11,6 +12,7 @@ import { Actions, Epic, GameState } from "./types";
 export type GameReducer = Reducer<GameState, Actions>;
 
 const INITIAL_STATE: GameState = {};
+const API_URL = `${process.env.REACT_APP_HTTPS_FUNCTIONS}`;
 
 /** REDUCERS */
 /** -------- */
@@ -55,10 +57,39 @@ const gameInit: Epic = (action$, state$) =>
     }))
   );
 
+const gameLoaded: Epic = (action$, state$) =>
+  action$.pipe(
+    ofType("GAME_LOADED"),
+    map(() => {
+      const state = state$.value;
+
+      // If the game was "loaded" but it doesn't have any players or game state, then it means it was reset. Unregister.
+      if (
+        (!state.players || Object.values(state.players).length === 0) &&
+        (!state.game || Object.values(state.game).length === 0)
+      ) {
+        return {
+          type: "ACCOUNT_UNREGISTER",
+        };
+      }
+
+      return {
+        type: "__IGNORE",
+      };
+    })
+  );
+
+const gameReset: Epic = (action$, state$) =>
+  action$.pipe(
+    ofType("GAME_RESET"),
+    switchMap(() => ajax.post(`${API_URL}/reset-game`)),
+    mapTo({ type: "__IGNORE" })
+  );
+
 /** EXPORTS */
 /** ----- */
 
-export const gameEpics = combineEpics(gameInit);
+export const gameEpics = combineEpics(gameInit, gameReset, gameLoaded);
 
 export const gameReducers = reduceReducers<GameState, Actions>(
   INITIAL_STATE,
