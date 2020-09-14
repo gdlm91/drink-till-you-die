@@ -30,7 +30,7 @@ const ActionModal: React.FC = () => {
       </Modal.Body>
       <Modal.Footer>
         <Button className="colorful-button" onClick={nextPlayer}>
-          Listo! Siguiente jugador.
+          Next player
         </Button>
       </Modal.Footer>
     </Modal>
