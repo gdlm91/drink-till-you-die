@@ -59,6 +59,7 @@
 
 @mixin grid-with-edges($x, $y) {
   grid-template-areas: generateGrid($x, $y);
+  grid-template-columns: repeat($x, minmax(0, 1fr));
   @include box-edges($x, $y);
 }
 
